@@ -200,30 +200,11 @@ h1 {
 }
 
 .clipboard-tool {
-  display: grid;
-  gap: 0.75rem;
   margin-block-start: 0.75rem;
-  padding: 0.875rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  background: var(--surface);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
-}
-
-.clipboard-tool h2 {
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.35;
-}
-
-.clipboard-tool p {
-  margin: 0.25rem 0 0;
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.45;
 }
 
 .clipboard-button {
+  inline-size: 100%;
   min-block-size: 2.5rem;
   border: 1px solid var(--accent);
   border-radius: 0.5rem;

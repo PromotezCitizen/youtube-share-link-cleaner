@@ -35,12 +35,6 @@
   "saveError": {
     "message": "Could not save the setting. Try again."
   },
-  "clipboardTitle": {
-    "message": "Clean a copied link"
-  },
-  "clipboardDescription": {
-    "message": "Turn a YouTube watch link into a shorter youtu.be link."
-  },
   "clipboardButton": {
     "message": "Clean copied link"
   },

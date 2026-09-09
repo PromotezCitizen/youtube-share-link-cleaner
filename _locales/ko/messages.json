@@ -35,12 +35,6 @@
   "saveError": {
     "message": "설정을 저장하지 못했습니다. 다시 시도해 주세요."
   },
-  "clipboardTitle": {
-    "message": "복사한 링크 정리"
-  },
-  "clipboardDescription": {
-    "message": "YouTube 시청 링크를 더 짧은 youtu.be 링크로 바꿉니다."
-  },
   "clipboardButton": {
     "message": "복사한 링크 정리"
   },
