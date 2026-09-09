@@ -130,6 +130,17 @@
     return host;
   }
 
+  function getShortsActionBar() {
+    const activeReel = document.querySelector("ytd-reel-video-renderer[is-active]");
+
+    return (
+      activeReel?.querySelector("#actions") ??
+      document.querySelector("ytd-reel-player-overlay-renderer #actions") ??
+      document.querySelector("ytd-reel-video-renderer #actions") ??
+      document.querySelector("ytd-shorts #actions")
+    );
+  }
+
   function updateButton() {
     const pageKind = getPageKind();
 
@@ -141,9 +152,21 @@
     const actionBar =
       pageKind === "watch"
         ? document.querySelector("#top-level-buttons-computed")
-        : document.querySelector("ytd-reel-player-overlay-renderer #actions");
-    if (!actionBar || document.getElementById(hostId)) {
+        : getShortsActionBar();
+    if (!actionBar) {
       return;
+    }
+
+    const existingHost = document.getElementById(hostId);
+    if (existingHost) {
+      if (
+        existingHost.dataset.pageKind === pageKind &&
+        existingHost.parentElement === actionBar
+      ) {
+        return;
+      }
+
+      existingHost.remove();
     }
 
     actionBar.append(createButtonHost(pageKind));
