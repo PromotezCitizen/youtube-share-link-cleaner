@@ -13,6 +13,7 @@ A Chrome extension that removes `si` from YouTube share links and can shorten a 
 - Provides a popup toggle to enable or disable automatic cleaning instantly.
 - Cleans a copied `youtube.com/watch?v=…` link on demand, converting it to `youtu.be/…`.
 - Copies a cleaned link for the currently open YouTube page directly from the popup.
+- Adds a **Copy clean link** button to regular YouTube video pages (not Shorts).
 - Displays its interface in Korean or English based on Chrome's UI language.
 - Uses no external servers, user accounts, advertising, or analytics.
 
@@ -74,6 +75,10 @@ For a supported `youtube.com/watch?v=VIDEO_ID` URL, the button converts it to `h
 ## Copy the current YouTube page link
 
 Open the extension while viewing a YouTube page and select **Copy current page link**. It copies the current page URL after removing `si` and shortens supported watch URLs to `youtu.be/VIDEO_ID`. On a non-YouTube tab, the extension does not copy anything.
+
+## Copy from a video page
+
+On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. Select it to copy the cleaned, shortened current link without opening the extension popup. The button is not added to YouTube Shorts pages.
 
 ## Languages
 

@@ -40,6 +40,18 @@ test("all scripts and the popup referenced by the manifest exist", () => {
   }
 });
 
+test("loads the page copy button after the URL sanitizer in the main world", () => {
+  const mainWorldScript = manifest.content_scripts.find(
+    ({ world }) => world === "MAIN"
+  );
+
+  assert.deepEqual(mainWorldScript.js, [
+    "sanitize-url.js",
+    "content.js",
+    "page-button.js"
+  ]);
+});
+
 test("declares distinct PNG icon files at their actual dimensions", () => {
   for (const [declaredSize, relativePath] of Object.entries(manifest.icons)) {
     assert.match(relativePath, new RegExp(`icon-${declaredSize}\\.png$`));
