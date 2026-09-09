@@ -74,7 +74,7 @@ The popup, extension name, and description follow Chrome's UI language.
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
 3. Select **Load unpacked**.
-4. Choose the `chrome-youtube-share-tag` project directory.
+4. Choose the `youtube-share-link-cleaner` project directory.
 5. Refresh any YouTube tabs that were already open.
 
 Use YouTube's regular **Share** and **Copy** buttons after installation. Pin the extension to the Chrome toolbar for quick access to its setting.
