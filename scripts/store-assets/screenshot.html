@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YouTube Share Link Cleaner — Store Screenshot</title>
+    <link rel="stylesheet" href="store-assets.css">
+  </head>
+  <body>
+    <main class="screenshot">
+      <section class="hero" aria-labelledby="headline">
+        <div class="brand">
+          <img src="../../icons/icon-128.png" alt="">
+          <span>YouTube Share Link Cleaner</span>
+        </div>
+        <h1 id="headline">Share the link, without <code>si</code>.</h1>
+        <p class="lead">Automatically removes only the <code>si</code> query parameter while keeping timestamps, playlists, and video IDs intact.</p>
+        <div class="transform" aria-label="Example link transformation">
+          <div class="url-row before">
+            <strong>Before</strong>
+            <code>youtu.be/dQw4w9WgXcQ?<span class="removed">si=abc123&amp;</span>t=42</code>
+          </div>
+          <div class="url-row after">
+            <strong>After</strong>
+            <code>youtu.be/dQw4w9WgXcQ?t=42</code>
+          </div>
+        </div>
+      </section>
+
+      <aside class="popup-preview" aria-label="Extension popup preview">
+        <div class="popup-brand">
+          <span class="mark"><img src="../../icons/icon-128.png" alt=""></span>
+          <span>YouTube Share Link Cleaner</span>
+        </div>
+        <h2>Clean share links</h2>
+        <p>Removes only <code>si</code>. Timestamps and playlists stay intact.</p>
+        <div class="setting">
+          <span class="setting-label">Clean automatically</span>
+          <span class="setting-state">On <span class="switch" aria-hidden="true"></span></span>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

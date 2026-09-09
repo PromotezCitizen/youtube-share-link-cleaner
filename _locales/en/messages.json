@@ -3,7 +3,7 @@
     "message": "YouTube Share Link Cleaner"
   },
   "extensionDescription": {
-    "message": "Automatically removes only the si tracking parameter from YouTube share links."
+    "message": "Automatically removes only the si query parameter from YouTube share links."
   },
   "actionTitle": {
     "message": "YouTube Share Link Cleaner settings"

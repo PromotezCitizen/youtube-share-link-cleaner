@@ -3,7 +3,9 @@
   "version": "1.3.2",
   "private": true,
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "assets:store": "sh scripts/generate-store-assets.sh",
+    "package:store": "sh scripts/package-extension.sh"
   },
   "engines": {
     "node": ">=18"

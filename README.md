@@ -81,6 +81,18 @@ Use YouTube's regular **Share** and **Copy** buttons after installation. Pin the
 
 After changing the extension code, reload it from `chrome://extensions`. If a content script changed, refresh existing YouTube tabs as well.
 
+## Install from GitHub
+
+Chrome does not install an extension directly from a GitHub page. GitHub distribution uses Chrome's manual developer-mode installation:
+
+1. On the repository page, select **Code → Download ZIP**. A versioned ZIP on the optional [Releases page](https://github.com/PromotezCitizen/youtube-share-link-cleaner/releases) can be used instead when one is available.
+2. Download the ZIP and extract it to a permanent folder. Do not select the ZIP file itself.
+3. Open `chrome://extensions` in Chrome and enable **Developer mode**.
+4. Select **Load unpacked** and choose the extracted folder containing `manifest.json`.
+5. Refresh any YouTube tabs that were already open.
+
+When a newer archive is available, download and extract it, then use the reload button on the extension card. Refresh YouTube tabs after updating. Chrome may show a developer-mode warning for extensions installed this way. The Chrome Web Store is the normal installation method for end users; GitHub installation is intended for personal use, testing, and users who accept manual updates. A GitHub Release is optional and is useful only when you want versioned downloads and release notes.
+
 ## Privacy and data handling
 
 - The extension does not collect personal information.
@@ -91,6 +103,8 @@ After changing the extension code, reload it from `chrome://extensions`. If a co
 - `chrome.storage.local` stores only whether automatic cleaning is enabled.
 
 Chrome removes the extension's local setting when the extension is uninstalled.
+
+See the full [Privacy Policy](PRIVACY.md) for details.
 
 ## Permission
 
@@ -106,6 +120,23 @@ npm test
 
 The tests cover URL-cleaning rules, manifest configuration, locale resources, referenced icon files, and their actual image dimensions.
 
+## Chrome Web Store release
+
+- Store listing copy, permission justifications, privacy declarations, and the submission checklist: [`CHROMEWEBSTORE.md`](CHROMEWEBSTORE.md)
+- Privacy policy: [`PRIVACY.md`](PRIVACY.md)
+- Store graphics: `store-assets/`
+
+Regenerate the store graphics and create the clean submission ZIP with:
+
+```bash
+npm run assets:store
+npm run package:store
+```
+
+The ZIP is written to `dist/` and contains only files required by the extension. Documentation, tests, store graphics, and development scripts are excluded.
+
 ## Support
 
 Use [GitHub Issues](https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues) for bug reports, feature requests, and questions. Include the type of YouTube page and an example copied URL when possible. Remove any information you do not want to share publicly before posting.
+
+This extension is not affiliated with or endorsed by YouTube or Google.

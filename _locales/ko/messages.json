@@ -3,7 +3,7 @@
     "message": "YouTube 공유 링크 정리"
   },
   "extensionDescription": {
-    "message": "YouTube 공유 링크에서 si 추적 파라미터만 자동으로 제거합니다."
+    "message": "YouTube 공유 링크에서 si 쿼리 파라미터만 자동으로 제거합니다."
   },
   "actionTitle": {
     "message": "YouTube 공유 링크 정리 설정"
