@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — YouTube Share Link Cleaner
 
 > Last updated: 2026-09-09
-> Extension version: 1.5.3
+> Extension version: 1.5.4
 
 This file is the copy-and-paste source for the Chrome Web Store Developer Dashboard. Text marked as internal notes is not intended for the public listing.
 
@@ -46,7 +46,7 @@ https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues
 
 This extension is not affiliated with or endorsed by YouTube or Google.
 
-Version 1.5.3
+Version 1.5.4
 
 **Category**
 
@@ -101,7 +101,7 @@ https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues
 
 이 확장 프로그램은 YouTube 또는 Google과 제휴 관계가 없으며 이들의 보증을 받지 않았습니다.
 
-버전 1.5.3
+버전 1.5.4
 
 **카테고리**
 
@@ -176,12 +176,12 @@ Open this URL in a private browser window before submission and confirm that it 
 | Asset | Dimensions | Status | Filename |
 |---|---:|---|---|
 | Store icon | 128×128 | Ready | `icons/icon-128.png` |
-| Screenshot 1 | 1280×800 | Needs update for v1.5.3 page buttons | `store-assets/screenshot-1.png` |
-| Screenshot 2 — disabled | 1280×800 | Needs update for v1.5.3 popup | `store-assets/screenshot-2-disabled-real.jpg` |
-| Screenshot 3 — enabled | 1280×800 | Needs update for v1.5.3 popup | `store-assets/screenshot-3-enabled-real.jpg` |
+| Screenshot 1 | 1280×800 | Needs update for v1.5.4 page buttons | `store-assets/screenshot-1.png` |
+| Screenshot 2 — disabled | 1280×800 | Needs update for v1.5.4 popup | `store-assets/screenshot-2-disabled-real.jpg` |
+| Screenshot 3 — enabled | 1280×800 | Needs update for v1.5.4 popup | `store-assets/screenshot-3-enabled-real.jpg` |
 | Small promotional tile | 440×280 | Ready | `store-assets/small-promo-tile.png` |
 
-Recapture at least one screenshot before uploading v1.5.3: it must show a clean-copy button on a regular video or Shorts page and a real cleaned result. Screenshots 2 and 3 can still show the automatic-cleaning disabled/enabled comparison. The captures use a browser window without a signed-in personal account. The promotional tile uses the extension's own icon and does not use YouTube or Google logos.
+Recapture at least one screenshot before uploading v1.5.4: it must show a clean-copy button on a regular video or Shorts page and a real cleaned result. Screenshots 2 and 3 can still show the automatic-cleaning disabled/enabled comparison. The captures use a browser window without a signed-in personal account. The promotional tile uses the extension's own icon and does not use YouTube or Google logos.
 
 ## Distribution
 
@@ -217,6 +217,7 @@ Official references:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
+| 1.5.4 | 2026-09-09 | Supports newer Shorts action-bar layouts and adds a visible fallback when YouTube does not expose an action container. | Feature branch |
 | 1.5.3 | 2026-09-09 | Makes the Shorts copy button resilient to current action-menu layouts and YouTube SPA navigation from a regular video. | Feature branch |
 | 1.5.2 | 2026-09-09 | Adds a compact direct clean-copy button to Shorts pages and shortens copied Shorts URLs. | Feature branch |
 | 1.5.1 | 2026-09-09 | Removes the popup clipboard and current-tab actions, leaving one direct clean-copy action on regular video pages. Removes `clipboardRead`, `clipboardWrite`, and `tabs` permissions. | Feature branch |

@@ -39,10 +39,11 @@
     return null;
   }
 
-  function createButtonHost(pageKind) {
+  function createButtonHost(pageKind, useShortsFallback = false) {
     const host = document.createElement("span");
     host.id = hostId;
     host.dataset.pageKind = pageKind;
+    host.dataset.shortsFallback = String(useShortsFallback);
 
     const shadow = host.attachShadow({ mode: "closed" });
     const style = document.createElement("style");
@@ -72,6 +73,11 @@
       }
       @media (prefers-reduced-motion: reduce) { button { transition: none; } }
       :host([data-page-kind="shorts"]) { margin: 8px 0 0; }
+      :host([data-page-kind="shorts"][data-shorts-fallback="true"]) {
+        position: fixed;
+        z-index: 2202;
+        margin: 0;
+      }
       :host([data-page-kind="shorts"]) button {
         inline-size: 52px;
         min-block-size: auto;
@@ -130,15 +136,45 @@
     return host;
   }
 
+  function getVisibleShortsRoot() {
+    const candidates = document.querySelectorAll(
+      "ytd-reel-video-renderer, ytd-reel-player-overlay-renderer, ytd-shorts"
+    );
+
+    return Array.from(candidates).find((candidate) => {
+      const rect = candidate.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < window.innerHeight;
+    });
+  }
+
   function getShortsActionBar() {
-    const activeReel = document.querySelector("ytd-reel-video-renderer[is-active]");
+    const activeReel =
+      document.querySelector("ytd-reel-video-renderer[is-active]") ??
+      getVisibleShortsRoot();
 
     return (
       activeReel?.querySelector("#actions") ??
+      activeReel?.querySelector("#action-bar") ??
       document.querySelector("ytd-reel-player-overlay-renderer #actions") ??
+      document.querySelector("ytd-reel-player-overlay-renderer #action-bar") ??
       document.querySelector("ytd-reel-video-renderer #actions") ??
       document.querySelector("ytd-shorts #actions")
     );
+  }
+
+  function positionShortsFallback(host) {
+    const player = document.querySelector(
+      "ytd-reel-video-renderer[is-active] video, ytd-reel-video-renderer video, ytd-shorts video"
+    );
+    const rect = player?.getBoundingClientRect();
+    const left = Math.min((rect?.right ?? window.innerWidth * 0.8) + 16, window.innerWidth - 64);
+    const top = Math.min(
+      Math.max((rect?.top ?? 0) + (rect?.height ?? window.innerHeight) * 0.62, 84),
+      window.innerHeight - 96
+    );
+
+    host.style.left = `${left}px`;
+    host.style.top = `${top}px`;
   }
 
   function updateButton() {
@@ -153,7 +189,10 @@
       pageKind === "watch"
         ? document.querySelector("#top-level-buttons-computed")
         : getShortsActionBar();
-    if (!actionBar) {
+    const useShortsFallback = pageKind === "shorts" && !actionBar;
+    const buttonTarget = actionBar ?? (useShortsFallback ? document.body : null);
+
+    if (!buttonTarget) {
       return;
     }
 
@@ -161,15 +200,24 @@
     if (existingHost) {
       if (
         existingHost.dataset.pageKind === pageKind &&
-        existingHost.parentElement === actionBar
+        existingHost.dataset.shortsFallback === String(useShortsFallback) &&
+        existingHost.parentElement === buttonTarget
       ) {
+        if (useShortsFallback) {
+          positionShortsFallback(existingHost);
+        }
         return;
       }
 
       existingHost.remove();
     }
 
-    actionBar.append(createButtonHost(pageKind));
+    const host = createButtonHost(pageKind, useShortsFallback);
+    buttonTarget.append(host);
+
+    if (useShortsFallback) {
+      positionShortsFallback(host);
+    }
   }
 
   function scheduleUpdate() {
