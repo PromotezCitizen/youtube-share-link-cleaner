@@ -1,0 +1,38 @@
+{
+  "extensionName": {
+    "message": "YouTube 공유 링크 정리"
+  },
+  "extensionDescription": {
+    "message": "YouTube 공유 링크에서 si 추적 파라미터만 자동으로 제거합니다."
+  },
+  "actionTitle": {
+    "message": "YouTube 공유 링크 정리 설정"
+  },
+  "popupDocumentTitle": {
+    "message": "YouTube 공유 링크 정리 설정"
+  },
+  "popupTitle": {
+    "message": "공유 링크 정리"
+  },
+  "popupDescription": {
+    "message": "si만 제거하고 시간과 재생목록은 그대로 둡니다."
+  },
+  "toggleLabel": {
+    "message": "자동으로 정리"
+  },
+  "loadingState": {
+    "message": "불러오는 중"
+  },
+  "enabledState": {
+    "message": "사용 중"
+  },
+  "disabledState": {
+    "message": "사용 안 함"
+  },
+  "loadError": {
+    "message": "설정을 불러오지 못했습니다."
+  },
+  "saveError": {
+    "message": "설정을 저장하지 못했습니다. 다시 시도해 주세요."
+  }
+}

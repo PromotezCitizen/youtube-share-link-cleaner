@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title data-i18n="popupDocumentTitle">YouTube Share Link Cleaner settings</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header class="header">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M9.5 14.5 14.5 9M7.1 16.9l-1 1a3.5 3.5 0 0 1-5-5l3-3a3.5 3.5 0 0 1 5 0M16.9 7.1l1-1a3.5 3.5 0 1 1 5 5l-3 3a3.5 3.5 0 0 1-5 0" />
+            </svg>
+          </span>
+          <span class="brand-name" data-i18n="extensionName">YouTube Share Link Cleaner</span>
+        </div>
+        <h1 data-i18n="popupTitle">Clean share links</h1>
+        <p class="intro" data-i18n="popupDescription">Removes only si. Timestamps and playlists stay intact.</p>
+      </header>
+
+      <section class="setting" aria-labelledby="toggle-label">
+        <label id="toggle-label" class="setting-title" for="enabled" data-i18n="toggleLabel">Clean automatically</label>
+        <div class="control">
+          <span id="status" class="status" aria-hidden="true" data-i18n="loadingState">Loading</span>
+          <input id="enabled" class="switch" type="checkbox" disabled>
+        </div>
+      </section>
+
+      <p id="error" class="error" role="status" aria-live="polite" hidden></p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

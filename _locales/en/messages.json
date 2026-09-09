@@ -1,0 +1,38 @@
+{
+  "extensionName": {
+    "message": "YouTube Share Link Cleaner"
+  },
+  "extensionDescription": {
+    "message": "Automatically removes only the si tracking parameter from YouTube share links."
+  },
+  "actionTitle": {
+    "message": "YouTube Share Link Cleaner settings"
+  },
+  "popupDocumentTitle": {
+    "message": "YouTube Share Link Cleaner settings"
+  },
+  "popupTitle": {
+    "message": "Clean share links"
+  },
+  "popupDescription": {
+    "message": "Removes only si. Timestamps and playlists stay intact."
+  },
+  "toggleLabel": {
+    "message": "Clean automatically"
+  },
+  "loadingState": {
+    "message": "Loading"
+  },
+  "enabledState": {
+    "message": "On"
+  },
+  "disabledState": {
+    "message": "Off"
+  },
+  "loadError": {
+    "message": "Could not load the setting."
+  },
+  "saveError": {
+    "message": "Could not save the setting. Try again."
+  }
+}
