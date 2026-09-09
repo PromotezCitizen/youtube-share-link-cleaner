@@ -10,7 +10,7 @@ YouTube Share Link Cleaner is designed to remove the `si` query parameter from Y
 
 ### Data handled by the extension
 
-The extension temporarily processes text involved in YouTube's share and copy flows to determine whether it is a YouTube URL containing an `si` parameter. When a user selects **Clean copied link** in the popup, it also reads the current clipboard text once to determine whether it is a supported YouTube URL. Processing occurs entirely on the user's device. The processed text, shared URLs, page content, clipboard content, and browsing history are not collected, retained, logged, or transmitted.
+The extension temporarily processes text involved in YouTube's share and copy flows to determine whether it is a YouTube URL containing an `si` parameter. When a user selects **Clean copied link** in the popup, it also reads the current clipboard text once to determine whether it is a supported YouTube URL. When a user selects **Copy current page link**, it reads only the active tab's URL to create the requested cleaned link. Processing occurs entirely on the user's device. The processed text, shared URLs, page content, clipboard content, and browsing history are not collected, retained, logged, or transmitted.
 
 The extension stores one preference on the user's device: whether automatic link cleaning is enabled. This preference is a Boolean on/off value and does not contain personal information or browsing data.
 
@@ -60,7 +60,7 @@ YouTube 공유 링크 정리(YouTube Share Link Cleaner)는 YouTube 공유 링�
 
 ### 확장 프로그램이 처리하는 데이터
 
-확장 프로그램은 YouTube의 공유 및 복사 과정에서 사용되는 텍스트가 `si` 파라미터를 포함한 YouTube URL인지 확인하기 위해 이를 일시적으로 처리합니다. 사용자가 팝업에서 **복사한 링크 정리**를 누르면 현재 클립보드 텍스트도 한 번 읽어 지원하는 YouTube URL인지 확인합니다. 모든 처리는 사용자의 기기 안에서 이루어집니다. 처리된 텍스트, 공유 URL, 페이지 내용, 클립보드 내용 및 방문 기록은 수집, 보관, 기록 또는 전송되지 않습니다.
+확장 프로그램은 YouTube의 공유 및 복사 과정에서 사용되는 텍스트가 `si` 파라미터를 포함한 YouTube URL인지 확인하기 위해 이를 일시적으로 처리합니다. 사용자가 팝업에서 **복사한 링크 정리**를 누르면 현재 클립보드 텍스트도 한 번 읽어 지원하는 YouTube URL인지 확인합니다. **현재 페이지 링크 복사**를 누르면 요청한 정리 링크를 만들기 위해 활성 탭의 URL만 읽습니다. 모든 처리는 사용자의 기기 안에서 이루어집니다. 처리된 텍스트, 공유 URL, 페이지 내용, 클립보드 내용 및 방문 기록은 수집, 보관, 기록 또는 전송되지 않습니다.
 
 확장 프로그램은 자동 링크 정리 기능의 켜짐/꺼짐 여부만 사용자의 기기에 저장합니다. 이 설정은 참/거짓 값 하나이며 개인정보나 방문 정보를 포함하지 않습니다.
 

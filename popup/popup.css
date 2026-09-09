@@ -200,6 +200,8 @@ h1 {
 }
 
 .clipboard-tool {
+  display: grid;
+  gap: 0.5rem;
   margin-block-start: 0.75rem;
 }
 
@@ -220,6 +222,17 @@ h1 {
 .clipboard-button:hover:not(:disabled) {
   border-color: var(--accent-hover);
   background: var(--accent-hover);
+}
+
+.clipboard-button + .clipboard-button {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.clipboard-button + .clipboard-button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .clipboard-button:focus-visible {

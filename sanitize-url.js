@@ -11,6 +11,27 @@
     );
   }
 
+  function isYouTubeUrl(value) {
+    if (typeof value !== "string") {
+      return false;
+    }
+
+    const whitespaceMatch = value.match(/^\s*(\S+)\s*$/);
+    if (!whitespaceMatch) {
+      return false;
+    }
+
+    try {
+      const url = new URL(whitespaceMatch[1]);
+      return (
+        (url.protocol === "https:" || url.protocol === "http:") &&
+        isYouTubeHost(url.hostname)
+      );
+    } catch {
+      return false;
+    }
+  }
+
   function sanitizeYouTubeUrl(value) {
     if (typeof value !== "string") {
       return value;
@@ -84,7 +105,11 @@
     return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
   }
 
-  const api = Object.freeze({ sanitizeYouTubeUrl, shortenCopiedYouTubeUrl });
+  const api = Object.freeze({
+    isYouTubeUrl,
+    sanitizeYouTubeUrl,
+    shortenCopiedYouTubeUrl
+  });
 
   Object.defineProperty(root, "__YOUTUBE_SHARE_SI_REMOVER__", {
     value: api,

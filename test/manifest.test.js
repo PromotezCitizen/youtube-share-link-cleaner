@@ -14,7 +14,12 @@ const packageJson = JSON.parse(
 test("uses Manifest V3 with only the permissions required for local settings and explicit clipboard cleaning", () => {
   assert.equal(manifest.manifest_version, 3);
   assert.equal(manifest.version, packageJson.version);
-  assert.deepEqual(manifest.permissions, ["storage", "clipboardRead", "clipboardWrite"]);
+  assert.deepEqual(manifest.permissions, [
+    "storage",
+    "clipboardRead",
+    "clipboardWrite",
+    "tabs"
+  ]);
   assert.equal(manifest.host_permissions, undefined);
 });
 
@@ -57,6 +62,7 @@ test("popup uses external assets and an accessible checkbox", () => {
   assert.match(popupHtml, /<input[\s\S]*id="enabled"[\s\S]*type="checkbox"/);
   assert.match(popupHtml, /<label[\s\S]*for="enabled"/);
   assert.match(popupHtml, /<button[\s\S]*id="clean-clipboard"[\s\S]*type="button"/);
+  assert.match(popupHtml, /<button[\s\S]*id="copy-current-page"[\s\S]*type="button"/);
   assert.match(popupHtml, /<script src="\.\.\/sanitize-url\.js"><\/script>/);
   assert.match(popupHtml, /<script src="popup\.js"><\/script>/);
   assert.doesNotMatch(popupHtml, /\son[a-z]+\s*=/i);

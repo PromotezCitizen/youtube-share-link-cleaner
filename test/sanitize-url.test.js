@@ -3,7 +3,8 @@ const assert = require("node:assert/strict");
 
 const {
   sanitizeYouTubeUrl,
-  shortenCopiedYouTubeUrl
+  shortenCopiedYouTubeUrl,
+  isYouTubeUrl
 } = require("../sanitize-url.js");
 
 test("removes si from a youtu.be share URL", () => {
@@ -93,4 +94,11 @@ test("leaves unsupported copied text unchanged", () => {
     "https://example.com/watch?v=dQw4w9WgXcQ&si=value"
   );
   assert.equal(shortenCopiedYouTubeUrl("not a URL"), "not a URL");
+});
+
+test("recognizes only HTTP(S) YouTube URLs", () => {
+  assert.equal(isYouTubeUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ"), true);
+  assert.equal(isYouTubeUrl("https://youtu.be/dQw4w9WgXcQ"), true);
+  assert.equal(isYouTubeUrl("https://example.com/watch?v=dQw4w9WgXcQ"), false);
+  assert.equal(isYouTubeUrl("chrome://extensions"), false);
 });

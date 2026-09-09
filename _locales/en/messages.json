@@ -38,6 +38,9 @@
   "clipboardButton": {
     "message": "Clean copied link"
   },
+  "copyCurrentPageButton": {
+    "message": "Copy current page link"
+  },
   "clipboardSuccess": {
     "message": "Copied link cleaned."
   },
@@ -49,5 +52,14 @@
   },
   "clipboardError": {
     "message": "Could not access the clipboard. Allow clipboard access and try again."
+  },
+  "currentPageSuccess": {
+    "message": "Current page link copied."
+  },
+  "currentPageUnsupported": {
+    "message": "Open a YouTube page to copy its link."
+  },
+  "currentPageError": {
+    "message": "Could not access the current page. Try again."
   }
 }
