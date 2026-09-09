@@ -42,7 +42,49 @@
     return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
   }
 
-  const api = Object.freeze({ sanitizeYouTubeUrl });
+  function shortenCopiedYouTubeUrl(value) {
+    if (typeof value !== "string") {
+      return value;
+    }
+
+    const whitespaceMatch = value.match(/^(\s*)(\S+)(\s*)$/);
+    if (!whitespaceMatch) {
+      return value;
+    }
+
+    const [, leadingWhitespace, candidate, trailingWhitespace] = whitespaceMatch;
+
+    let url;
+    try {
+      url = new URL(candidate);
+    } catch {
+      return value;
+    }
+
+    if (
+      (url.protocol !== "https:" && url.protocol !== "http:") ||
+      !isYouTubeHost(url.hostname)
+    ) {
+      return value;
+    }
+
+    if (url.pathname === "/watch") {
+      const videoId = url.searchParams.get("v");
+
+      if (videoId) {
+        url.protocol = "https:";
+        url.hostname = "youtu.be";
+        url.port = "";
+        url.pathname = `/${videoId}`;
+        url.searchParams.delete("v");
+      }
+    }
+
+    url.searchParams.delete("si");
+    return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
+  }
+
+  const api = Object.freeze({ sanitizeYouTubeUrl, shortenCopiedYouTubeUrl });
 
   Object.defineProperty(root, "__YOUTUBE_SHARE_SI_REMOVER__", {
     value: api,

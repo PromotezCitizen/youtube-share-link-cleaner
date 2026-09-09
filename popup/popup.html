@@ -30,9 +30,19 @@
         </div>
       </section>
 
+      <section class="clipboard-tool" aria-labelledby="clipboard-title">
+        <div>
+          <h2 id="clipboard-title" data-i18n="clipboardTitle">Clean a copied link</h2>
+          <p data-i18n="clipboardDescription">Turn a YouTube watch link into a shorter youtu.be link.</p>
+        </div>
+        <button id="clean-clipboard" class="clipboard-button" type="button" data-i18n="clipboardButton">Clean copied link</button>
+      </section>
+
+      <p id="clipboard-result" class="clipboard-result" role="status" aria-live="polite" hidden></p>
       <p id="error" class="error" role="status" aria-live="polite" hidden></p>
     </main>
 
+    <script src="../sanitize-url.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

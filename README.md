@@ -2,7 +2,7 @@
 
 English | [한국어](README.ko.md)
 
-A Chrome extension that removes only the `si` query parameter added to YouTube share links.
+A Chrome extension that removes `si` from YouTube share links and can shorten a copied YouTube watch link on demand.
 
 ![YouTube Share Link Cleaner icon](icons/icon-128.png)
 
@@ -11,6 +11,7 @@ A Chrome extension that removes only the `si` query parameter added to YouTube s
 - Removes only the `si` parameter from YouTube share links.
 - Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
 - Provides a popup toggle to enable or disable automatic cleaning instantly.
+- Cleans a copied `youtube.com/watch?v=…` link on demand, converting it to `youtu.be/…`.
 - Displays its interface in Korean or English based on Chrome's UI language.
 - Uses no external servers, user accounts, advertising, or analytics.
 
@@ -61,6 +62,14 @@ The extension does not inject scripts into unrelated websites and does not modif
 
 The setting is stored on the current device and applies immediately to open YouTube tabs. Automatic cleaning is enabled by default.
 
+## Clean a link copied from the address bar
+
+1. Copy a YouTube link from Chrome's address bar.
+2. Open **YouTube Share Link Cleaner** from the extensions button.
+3. Select **Clean copied link**.
+
+For a supported `youtube.com/watch?v=VIDEO_ID` URL, the button converts it to `https://youtu.be/VIDEO_ID`, removes `si`, and preserves the remaining parameters such as `t` and `list`. It reads the clipboard only after you select the button; it does not monitor clipboard contents automatically.
+
 ## Languages
 
 The popup, extension name, and description follow Chrome's UI language.
@@ -100,15 +109,18 @@ When a newer archive is available, download and extract it, then use the reload 
 - It does not transmit user data to external servers or third parties.
 - It contains no advertising, analytics, or tracking code.
 - A URL that YouTube attempts to copy is processed momentarily and only on the user's device to remove `si`.
+- A copied URL is read only after selecting **Clean copied link**, processed locally, and immediately replaced with its cleaned form. It is never retained or transmitted.
 - `chrome.storage.local` stores only whether automatic cleaning is enabled.
 
 Chrome removes the extension's local setting when the extension is uninstalled.
 
 See the full [Privacy Policy](PRIVACY.md) for details.
 
-## Permission
+## Permissions
 
-The extension requests only the `storage` permission. It is used solely to remember whether automatic cleaning is enabled on the current device.
+- `storage` remembers whether automatic cleaning is enabled on the current device.
+- `clipboardRead` reads the copied text only after you select **Clean copied link**.
+- `clipboardWrite` replaces that copied text with the cleaned YouTube link.
 
 ## Development and testing
 

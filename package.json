@@ -1,6 +1,6 @@
 {
   "name": "chrome-youtube-share-tag",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "test": "node --test",

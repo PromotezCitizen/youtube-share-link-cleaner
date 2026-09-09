@@ -7,10 +7,14 @@ const projectRoot = path.resolve(__dirname, "..");
 const manifest = JSON.parse(
   fs.readFileSync(path.join(projectRoot, "manifest.json"), "utf8")
 );
+const packageJson = JSON.parse(
+  fs.readFileSync(path.join(projectRoot, "package.json"), "utf8")
+);
 
-test("uses Manifest V3 with only the storage permission", () => {
+test("uses Manifest V3 with only the permissions required for local settings and explicit clipboard cleaning", () => {
   assert.equal(manifest.manifest_version, 3);
-  assert.deepEqual(manifest.permissions, ["storage"]);
+  assert.equal(manifest.version, packageJson.version);
+  assert.deepEqual(manifest.permissions, ["storage", "clipboardRead", "clipboardWrite"]);
   assert.equal(manifest.host_permissions, undefined);
 });
 
@@ -52,6 +56,8 @@ test("popup uses external assets and an accessible checkbox", () => {
   assert.match(popupHtml, /<html lang="en">/);
   assert.match(popupHtml, /<input[\s\S]*id="enabled"[\s\S]*type="checkbox"/);
   assert.match(popupHtml, /<label[\s\S]*for="enabled"/);
+  assert.match(popupHtml, /<button[\s\S]*id="clean-clipboard"[\s\S]*type="button"/);
+  assert.match(popupHtml, /<script src="\.\.\/sanitize-url\.js"><\/script>/);
   assert.match(popupHtml, /<script src="popup\.js"><\/script>/);
   assert.doesNotMatch(popupHtml, /\son[a-z]+\s*=/i);
 });

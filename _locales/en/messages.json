@@ -3,7 +3,7 @@
     "message": "YouTube Share Link Cleaner"
   },
   "extensionDescription": {
-    "message": "Automatically removes only the si query parameter from YouTube share links."
+    "message": "Removes si from YouTube shares and cleans copied YouTube links."
   },
   "actionTitle": {
     "message": "YouTube Share Link Cleaner settings"
@@ -34,5 +34,26 @@
   },
   "saveError": {
     "message": "Could not save the setting. Try again."
+  },
+  "clipboardTitle": {
+    "message": "Clean a copied link"
+  },
+  "clipboardDescription": {
+    "message": "Turn a YouTube watch link into a shorter youtu.be link."
+  },
+  "clipboardButton": {
+    "message": "Clean copied link"
+  },
+  "clipboardSuccess": {
+    "message": "Copied link cleaned."
+  },
+  "clipboardEmpty": {
+    "message": "Copy a YouTube link first."
+  },
+  "clipboardUnsupported": {
+    "message": "No supported YouTube link found in the clipboard."
+  },
+  "clipboardError": {
+    "message": "Could not access the clipboard. Allow clipboard access and try again."
   }
 }

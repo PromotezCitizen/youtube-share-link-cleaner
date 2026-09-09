@@ -1,7 +1,10 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { sanitizeYouTubeUrl } = require("../sanitize-url.js");
+const {
+  sanitizeYouTubeUrl,
+  shortenCopiedYouTubeUrl
+} = require("../sanitize-url.js");
 
 test("removes si from a youtu.be share URL", () => {
   assert.equal(
@@ -55,4 +58,39 @@ test("handles punctuation, empty values, and encoded delimiters without manual s
     ),
     "https://youtu.be/example?list=one%26two&t=4"
   );
+});
+
+test("shortens a copied YouTube watch URL and preserves useful parameters", () => {
+  assert.equal(
+    shortenCopiedYouTubeUrl(
+      "https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=share-value&t=42&list=PL123#details"
+    ),
+    "https://youtu.be/dQw4w9WgXcQ?t=42&list=PL123#details"
+  );
+});
+
+test("shortens a watch URL even when it has no si parameter", () => {
+  assert.equal(
+    shortenCopiedYouTubeUrl("https://m.youtube.com/watch?v=dQw4w9WgXcQ&t=42"),
+    "https://youtu.be/dQw4w9WgXcQ?t=42"
+  );
+});
+
+test("cleans si without changing non-watch YouTube URLs", () => {
+  assert.equal(
+    shortenCopiedYouTubeUrl("https://youtu.be/dQw4w9WgXcQ?si=value&t=42"),
+    "https://youtu.be/dQw4w9WgXcQ?t=42"
+  );
+  assert.equal(
+    shortenCopiedYouTubeUrl("https://youtube.com/shorts/example?si=value"),
+    "https://youtube.com/shorts/example"
+  );
+});
+
+test("leaves unsupported copied text unchanged", () => {
+  assert.equal(
+    shortenCopiedYouTubeUrl("https://example.com/watch?v=dQw4w9WgXcQ&si=value"),
+    "https://example.com/watch?v=dQw4w9WgXcQ&si=value"
+  );
+  assert.equal(shortenCopiedYouTubeUrl("not a URL"), "not a URL");
 });
