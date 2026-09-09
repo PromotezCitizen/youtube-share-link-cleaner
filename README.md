@@ -1,109 +1,111 @@
 # YouTube Share Link Cleaner
 
-YouTube 공유 링크에 자동으로 붙는 `si` 쿼리 파라미터만 제거하는 Chrome 확장 프로그램입니다.
+English | [한국어](README.ko.md)
 
-![YouTube Share Link Cleaner 아이콘](icons/icon-128.png)
+A Chrome extension that removes only the `si` query parameter added to YouTube share links.
 
-## 주요 기능
+![YouTube Share Link Cleaner icon](icons/icon-128.png)
 
-- YouTube 공유 링크에서 `si` 파라미터만 자동으로 제거합니다.
-- 시작 시간(`t`), 재생목록(`list`)과 같은 다른 정보는 유지합니다.
-- 확장 프로그램 팝업에서 자동 정리를 즉시 켜거나 끌 수 있습니다.
-- Chrome UI 언어에 맞춰 한국어 또는 영어로 표시됩니다.
-- 외부 서버, 사용자 계정, 분석 도구를 사용하지 않습니다.
+## Features
 
-## 변환 예시
+- Removes only the `si` parameter from YouTube share links.
+- Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
+- Provides a popup toggle to enable or disable automatic cleaning instantly.
+- Displays its interface in Korean or English based on Chrome's UI language.
+- Uses no external servers, user accounts, advertising, or analytics.
 
-다음 링크를 복사하면:
+## Example
+
+When you copy this URL:
 
 ```text
 https://youtu.be/dQw4w9WgXcQ?si=share-value&t=42
 ```
 
-클립보드에는 아래와 같이 저장됩니다.
+the extension places this cleaned URL on the clipboard:
 
 ```text
 https://youtu.be/dQw4w9WgXcQ?t=42
 ```
 
-URL의 영상 ID와 `t=42`는 유지되고 `si`만 제거됩니다. `si`가 유일한 쿼리 파라미터라면 불필요해진 `?`도 URL에서 사라집니다.
+The video ID and `t=42` remain unchanged. If `si` is the only query parameter, the now-unnecessary `?` is removed as well.
 
-## `si` 파라미터에 관하여
+## About the `si` parameter
 
-YouTube는 `si` 파라미터의 정확한 용도를 공식적으로 공개하지 않았습니다. YouTube의 공유 기능으로 링크를 만들 때 추가되는 식별 값으로 추정되지만, 이 설명은 공식적으로 확인된 정의가 아닙니다.
+YouTube has not publicly documented the exact purpose of the `si` parameter. It appears to be an identifier added when a link is created through YouTube's sharing interface, but this is an inference rather than an official definition.
 
-이 확장 프로그램은 재생에 필요한 영상 ID나 사용자가 선택한 시작 시간·재생목록 정보는 변경하지 않고 `si`만 제거합니다.
+This extension removes only `si`. It does not change the video ID or user-selected timestamp and playlist information required for the intended playback behavior.
 
-## 동작 범위
+## Scope
 
-확장 프로그램 스크립트는 다음 범위에서만 실행됩니다.
+The extension's scripts run only on:
 
 ```text
 https://youtube.com/*
 https://*.youtube.com/*
 ```
 
-YouTube 페이지의 공유 창이나 복사 동작에서 만들어진 다음 호스트의 URL을 정리할 수 있습니다.
+Within YouTube's share dialog and copy flows, it can clean URLs for these hosts:
 
 - `youtu.be`
 - `youtube.com`
-- `www.youtube.com`을 포함한 `youtube.com`의 하위 도메인
+- YouTube subdomains, including `www.youtube.com`
 
-다른 웹사이트에는 스크립트를 삽입하지 않으며, 일반 웹페이지에서 복사하는 URL에는 관여하지 않습니다.
+The extension does not inject scripts into unrelated websites and does not modify URLs copied from ordinary web pages outside YouTube.
 
-## 켜기 및 끄기
+## Enable or disable cleaning
 
-1. Chrome 도구 모음의 확장 프로그램 버튼을 누릅니다.
-2. **YouTube Share Link Cleaner**를 선택합니다.
-3. **자동으로 정리** 토글을 켜거나 끕니다.
+1. Select the extensions button in the Chrome toolbar.
+2. Select **YouTube Share Link Cleaner**.
+3. Turn **Clean automatically** on or off.
 
-설정은 현재 기기에 저장되며 열려 있는 YouTube 탭에도 즉시 적용됩니다. 기본값은 켜짐입니다.
+The setting is stored on the current device and applies immediately to open YouTube tabs. Automatic cleaning is enabled by default.
 
-## 언어
+## Languages
 
-팝업과 확장 프로그램 이름·설명은 Chrome의 UI 언어를 따릅니다.
+The popup, extension name, and description follow Chrome's UI language.
 
-- 한국어: `_locales/ko/messages.json`
-- 영어: `_locales/en/messages.json`
-- 지원하지 않는 언어: 영어로 표시
+- Korean: `_locales/ko/messages.json`
+- English: `_locales/en/messages.json`
+- Unsupported UI languages: English fallback
 
-## Chrome에 직접 설치하기
+## Install manually in Chrome
 
-1. 주소창에 `chrome://extensions`를 입력합니다.
-2. 오른쪽 위의 **개발자 모드**를 켭니다.
-3. **압축해제된 확장 프로그램을 로드합니다**를 누릅니다.
-4. 이 프로젝트 폴더(`chrome-youtube-share-tag`)를 선택합니다.
-5. 이미 열려 있던 YouTube 탭을 새로고침합니다.
+1. Open `chrome://extensions`.
+2. Enable **Developer mode**.
+3. Select **Load unpacked**.
+4. Choose the `chrome-youtube-share-tag` project directory.
+5. Refresh any YouTube tabs that were already open.
 
-이후 YouTube의 **공유** 버튼과 **복사** 버튼을 평소처럼 사용하면 됩니다. 자주 설정을 바꾸려면 확장 프로그램을 Chrome 도구 모음에 고정하세요.
+Use YouTube's regular **Share** and **Copy** buttons after installation. Pin the extension to the Chrome toolbar for quick access to its setting.
 
-코드를 수정한 뒤에는 `chrome://extensions`에서 확장 프로그램의 새로고침 버튼을 누릅니다. 콘텐츠 스크립트를 수정했다면 열려 있던 YouTube 탭도 새로고침해야 합니다.
+After changing the extension code, reload it from `chrome://extensions`. If a content script changed, refresh existing YouTube tabs as well.
 
-## 개인정보 및 데이터 처리
+## Privacy and data handling
 
-- 개인정보를 수집하지 않습니다.
-- 방문 기록, 공유 URL, 페이지 내용 또는 클립보드 내용을 저장하지 않습니다.
-- 사용자 데이터를 외부 서버나 제3자에게 전송하지 않습니다.
-- 광고, 분석 도구 또는 추적 코드를 포함하지 않습니다.
-- YouTube 페이지가 복사하려는 URL은 `si`를 제거하기 위해 사용자의 기기 안에서만 순간적으로 처리됩니다.
-- `chrome.storage.local`에는 자동 정리 기능의 켜짐/꺼짐 값만 저장됩니다.
+- The extension does not collect personal information.
+- It does not store browsing history, shared URLs, page content, or clipboard content.
+- It does not transmit user data to external servers or third parties.
+- It contains no advertising, analytics, or tracking code.
+- A URL that YouTube attempts to copy is processed momentarily and only on the user's device to remove `si`.
+- `chrome.storage.local` stores only whether automatic cleaning is enabled.
 
-확장 프로그램을 제거하면 Chrome이 해당 확장 프로그램의 로컬 설정도 함께 제거합니다.
+Chrome removes the extension's local setting when the extension is uninstalled.
 
-## 권한
+## Permission
 
-이 확장 프로그램이 요청하는 권한은 `storage` 하나입니다. 자동 정리 토글 상태를 현재 기기에 저장하는 용도로만 사용합니다.
+The extension requests only the `storage` permission. It is used solely to remember whether automatic cleaning is enabled on the current device.
 
-## 개발 및 테스트
+## Development and testing
 
-Node.js 18 이상에서 다음 명령을 실행합니다.
+Run the tests with Node.js 18 or later:
 
 ```bash
 npm test
 ```
 
-테스트는 URL 처리 규칙, manifest 구성, 다국어 리소스, 아이콘 파일과 실제 이미지 크기를 확인합니다.
+The tests cover URL-cleaning rules, manifest configuration, locale resources, referenced icon files, and their actual image dimensions.
 
-## 문의 및 오류 제보
+## Support
 
-기능 제안, 오류 제보 및 문의는 이 저장소의 **GitHub Issues**를 이용해 주세요. 문제를 재현할 수 있는 YouTube 화면 종류와 복사된 URL 예시를 함께 남기면 확인에 도움이 됩니다. URL에 공개하고 싶지 않은 정보가 있다면 제거한 뒤 첨부하세요.
+Use [GitHub Issues](https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues) for bug reports, feature requests, and questions. Include the type of YouTube page and an example copied URL when possible. Remove any information you do not want to share publicly before posting.
