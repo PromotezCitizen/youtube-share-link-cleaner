@@ -8,10 +8,11 @@ const source = fs.readFileSync(
   "utf8"
 );
 
-test("page button is limited to regular YouTube watch pages", () => {
+test("page button supports regular YouTube watch and Shorts pages", () => {
   assert.match(source, /url\.pathname === "\/watch"/);
   assert.match(source, /url\.searchParams\.has\("v"\)/);
-  assert.doesNotMatch(source, /\/shorts/);
+  assert.match(source, /\^\\\/shorts\\\//);
+  assert.match(source, /ytd-reel-player-overlay-renderer #actions/);
 });
 
 test("page button cleans and copies the current URL from its click handler", () => {

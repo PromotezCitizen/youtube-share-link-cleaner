@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — YouTube Share Link Cleaner
 
 > Last updated: 2026-09-09
-> Extension version: 1.5.1
+> Extension version: 1.5.2
 
 This file is the copy-and-paste source for the Chrome Web Store Developer Dashboard. Text marked as internal notes is not intended for the public listing.
 
@@ -17,14 +17,14 @@ Removes si from YouTube shares and lets you copy clean video links.
 
 **Detailed description**
 
-Remove the `si` query parameter from YouTube share links automatically when you use YouTube's share and copy controls. Copy a cleaned link directly from a regular YouTube video page.
+Remove the `si` query parameter from YouTube share links automatically when you use YouTube's share and copy controls. Copy a cleaned link directly from YouTube video and Shorts pages.
 
 FEATURES
 • Removes only the `si` query parameter
 • Preserves video IDs, timestamps, playlists, and other useful parameters
 • Works with YouTube's regular Share and Copy controls
 • Includes a simple on/off toggle
-• Adds a Copy clean link button to regular YouTube video pages, excluding Shorts
+• Adds a Copy clean link button to YouTube video and Shorts pages
 • Supports English and Korean based on Chrome's interface language
 
 HOW TO USE
@@ -32,13 +32,13 @@ HOW TO USE
 2. Open a video on YouTube.
 3. Use YouTube's Share and Copy buttons as usual.
 4. The copied link will omit `si` while retaining other useful parameters.
-5. On a regular video page, select **Copy clean link** beside YouTube's action buttons to copy the cleaned current link without opening the popup.
+5. On a regular video page, select **Copy clean link** beside YouTube's action buttons. On a Shorts page, select the compact copy button in the vertical action menu. Either action copies the cleaned current link without opening the popup.
 
 PRIVACY
-Share URLs are processed momentarily on your device and are never stored or transmitted. When the user selects **Copy clean link** on a regular video page, only the current page URL is processed locally and copied. The extension does not collect personal information, browsing history, or page content. It uses no analytics, advertising, tracking, accounts, external servers, or third-party services. Only the automatic-cleaning on/off preference is stored on the current device.
+Share URLs are processed momentarily on your device and are never stored or transmitted. When the user selects a copy button on a video or Shorts page, only the current page URL is processed locally and copied. The extension does not collect personal information, browsing history, or page content. It uses no analytics, advertising, tracking, accounts, external servers, or third-party services. Only the automatic-cleaning on/off preference is stored on the current device.
 
 PERMISSIONS
-The storage permission remembers whether automatic cleaning is enabled on the current device. The extension runs only on YouTube pages so it can clean URLs produced by YouTube's sharing interface and provide the **Copy clean link** button on regular video pages.
+The storage permission remembers whether automatic cleaning is enabled on the current device. The extension runs only on YouTube pages so it can clean URLs produced by YouTube's sharing interface and provide clean-copy buttons on video and Shorts pages.
 
 SUPPORT
 For bug reports, suggestions, and questions, visit:
@@ -46,7 +46,7 @@ https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues
 
 This extension is not affiliated with or endorsed by YouTube or Google.
 
-Version 1.5.1
+Version 1.5.2
 
 **Category**
 
@@ -54,7 +54,7 @@ Productivity
 
 **Single purpose**
 
-Remove `si` from YouTube share links and provide a clean-copy action on regular video pages.
+Remove `si` from YouTube share links and provide clean-copy actions on video and Shorts pages.
 
 **Primary language**
 
@@ -72,14 +72,14 @@ YouTube 공유 링크의 `si`를 제거하고 정리된 동영상 링크를 복�
 
 **상세 설명**
 
-YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` 쿼리 파라미터를 자동으로 제거합니다. 일반 동영상 페이지에서 정리된 링크를 바로 복사할 수도 있습니다.
+YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` 쿼리 파라미터를 자동으로 제거합니다. 일반 동영상과 Shorts 페이지에서 정리된 링크를 바로 복사할 수도 있습니다.
 
 주요 기능
 • `si` 쿼리 파라미터만 제거합니다.
 • 영상 ID, 시작 시간, 재생목록 및 그 밖의 유용한 파라미터는 유지합니다.
 • YouTube의 일반적인 공유 및 복사 버튼에서 동작합니다.
 • 간단한 켜기/끄기 토글을 제공합니다.
-• 일반 YouTube 동영상 페이지(Shorts 제외)에 정리 링크 복사 버튼을 추가합니다.
+• 일반 YouTube 동영상과 Shorts 페이지에 정리 링크 복사 버튼을 추가합니다.
 • Chrome 인터페이스 언어에 따라 한국어와 영어를 지원합니다.
 
 사용 방법
@@ -87,13 +87,13 @@ YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` �
 2. YouTube에서 영상을 엽니다.
 3. 평소처럼 YouTube의 공유 및 복사 버튼을 사용합니다.
 4. 복사된 링크에서는 `si`만 빠지고 다른 유용한 파라미터는 유지됩니다.
-5. 일반 동영상 페이지에서는 YouTube 동작 버튼 옆의 **정리해 복사**를 눌러 팝업 없이 정리된 현재 링크를 복사합니다.
+5. 일반 동영상 페이지에서는 YouTube 동작 버튼 옆의 **정리해 복사**를 누릅니다. Shorts 페이지에서는 오른쪽 세로 동작 메뉴의 작은 **복사** 버튼을 누릅니다. 두 경우 모두 팝업 없이 정리된 현재 링크를 복사합니다.
 
 개인정보
-공유 URL은 사용자의 기기에서 순간적으로만 처리되며 저장되거나 전송되지 않습니다. 일반 동영상 페이지의 **정리해 복사**를 누르면 현재 페이지 URL만 기기 안에서 처리해 복사합니다. 개인정보, 방문 기록 또는 페이지 내용을 수집하지 않습니다. 분석, 광고, 추적, 사용자 계정, 외부 서버 또는 제3자 서비스를 사용하지 않습니다. 현재 기기에는 자동 정리 기능의 켜짐/꺼짐 설정만 저장합니다.
+공유 URL은 사용자의 기기에서 순간적으로만 처리되며 저장되거나 전송되지 않습니다. 일반 동영상 또는 Shorts 페이지의 복사 버튼을 누르면 현재 페이지 URL만 기기 안에서 처리해 복사합니다. 개인정보, 방문 기록 또는 페이지 내용을 수집하지 않습니다. 분석, 광고, 추적, 사용자 계정, 외부 서버 또는 제3자 서비스를 사용하지 않습니다. 현재 기기에는 자동 정리 기능의 켜짐/꺼짐 설정만 저장합니다.
 
 권한
-저장소 권한은 현재 기기에서 자동 정리 기능의 켜짐/꺼짐 상태를 기억하는 데 사용합니다. 확장 프로그램은 YouTube 공유 화면에서 만들어지는 URL을 정리하고 일반 동영상 페이지에 **정리해 복사** 버튼을 제공하기 위해 YouTube 페이지에서만 실행됩니다.
+저장소 권한은 현재 기기에서 자동 정리 기능의 켜짐/꺼짐 상태를 기억하는 데 사용합니다. 확장 프로그램은 YouTube 공유 화면에서 만들어지는 URL을 정리하고 일반 동영상 및 Shorts 페이지에 복사 버튼을 제공하기 위해 YouTube 페이지에서만 실행됩니다.
 
 지원
 오류 제보, 기능 제안 및 문의:
@@ -109,7 +109,7 @@ https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues
 
 **단일 목적**
 
-YouTube 공유 링크에서 `si`를 제거하고 일반 동영상 페이지에서 정리된 링크를 복사합니다.
+YouTube 공유 링크에서 `si`를 제거하고 일반 동영상 및 Shorts 페이지에서 정리된 링크를 복사합니다.
 
 ## Permissions Justification
 
@@ -151,7 +151,7 @@ Use the wording of the current dashboard form. The extension handles a YouTube s
 | Location | None | No | No | No | — |
 | Web history | Not collected or recorded | No | No | No | — |
 | User activity | Copy and click events only trigger the local feature; they are not collected or recorded | No | No | No | — |
-| Website content | A YouTube share URL or the current regular video page URL after the user selects **Copy clean link** is processed momentarily on-device | No | No | No | Remove `si` and copy a shortened video link |
+| Website content | A YouTube share URL or the current video or Shorts page URL after the user selects a copy button is processed momentarily on-device | No | No | No | Remove `si` and copy a shortened video link |
 
 If the dashboard asks whether the extension **collects or uses/handles** any data, disclose **Website content** and select only the purpose corresponding to core functionality. Explain that processing is local and momentary. If it asks specifically whether data is **collected or transmitted off-device**, answer **No**. Do not describe the locally stored Boolean preference as personal information.
 
@@ -176,12 +176,12 @@ Open this URL in a private browser window before submission and confirm that it 
 | Asset | Dimensions | Status | Filename |
 |---|---:|---|---|
 | Store icon | 128×128 | Ready | `icons/icon-128.png` |
-| Screenshot 1 | 1280×800 | Needs update for v1.5.0 page button | `store-assets/screenshot-1.png` |
-| Screenshot 2 — disabled | 1280×800 | Needs update for v1.5.0 popup | `store-assets/screenshot-2-disabled-real.jpg` |
-| Screenshot 3 — enabled | 1280×800 | Needs update for v1.5.0 popup | `store-assets/screenshot-3-enabled-real.jpg` |
+| Screenshot 1 | 1280×800 | Needs update for v1.5.2 page buttons | `store-assets/screenshot-1.png` |
+| Screenshot 2 — disabled | 1280×800 | Needs update for v1.5.2 popup | `store-assets/screenshot-2-disabled-real.jpg` |
+| Screenshot 3 — enabled | 1280×800 | Needs update for v1.5.2 popup | `store-assets/screenshot-3-enabled-real.jpg` |
 | Small promotional tile | 440×280 | Ready | `store-assets/small-promo-tile.png` |
 
-Recapture at least one screenshot before uploading v1.5.1: it must show the **Copy clean link** button on a regular video page and a real cleaned result. Screenshots 2 and 3 can still show the automatic-cleaning disabled/enabled comparison. The captures use a browser window without a signed-in personal account. The promotional tile uses the extension's own icon and does not use YouTube or Google logos.
+Recapture at least one screenshot before uploading v1.5.2: it must show a clean-copy button on a regular video or Shorts page and a real cleaned result. Screenshots 2 and 3 can still show the automatic-cleaning disabled/enabled comparison. The captures use a browser window without a signed-in personal account. The promotional tile uses the extension's own icon and does not use YouTube or Google logos.
 
 ## Distribution
 
@@ -217,6 +217,7 @@ Official references:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
+| 1.5.2 | 2026-09-09 | Adds a compact direct clean-copy button to Shorts pages and shortens copied Shorts URLs. | Feature branch |
 | 1.5.1 | 2026-09-09 | Removes the popup clipboard and current-tab actions, leaving one direct clean-copy action on regular video pages. Removes `clipboardRead`, `clipboardWrite`, and `tabs` permissions. | Feature branch |
 | 1.5.0 | 2026-09-09 | Adds a direct **Copy clean link** button to regular YouTube video pages, excluding Shorts. | Feature branch |
 | 1.4.1 | 2026-09-09 | Adds a popup action that copies a cleaned link for the current YouTube page. Adds the `tabs` permission to access the active tab URL only after that explicit user action. | Feature branch |

@@ -78,6 +78,15 @@
         url.pathname = `/${videoId}`;
         url.searchParams.delete("v");
       }
+    } else {
+      const shortsMatch = url.pathname.match(/^\/shorts\/([^/]+)\/?$/);
+
+      if (shortsMatch) {
+        url.protocol = "https:";
+        url.hostname = "youtu.be";
+        url.port = "";
+        url.pathname = `/${shortsMatch[1]}`;
+      }
     }
 
     url.searchParams.delete("si");

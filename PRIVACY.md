@@ -6,11 +6,11 @@ Last updated: September 9, 2026
 
 ## English
 
-YouTube Share Link Cleaner is designed to remove the `si` query parameter from YouTube share links and copy clean links from regular video pages. This policy explains how the extension handles data.
+YouTube Share Link Cleaner is designed to remove the `si` query parameter from YouTube share links and copy clean links from video and Shorts pages. This policy explains how the extension handles data.
 
 ### Data handled by the extension
 
-The extension temporarily processes text involved in YouTube's share and copy flows to determine whether it is a YouTube URL containing an `si` parameter. When a user selects **Copy clean link** on a regular YouTube video page, it processes only the current page URL to create the requested cleaned link. Processing occurs entirely on the user's device. The processed text, shared URLs, page content, clipboard content, and browsing history are not collected, retained, logged, or transmitted.
+The extension temporarily processes text involved in YouTube's share and copy flows to determine whether it is a YouTube URL containing an `si` parameter. When a user selects **Copy clean link** on a YouTube video or Shorts page, it processes only the current page URL to create the requested cleaned link. Processing occurs entirely on the user's device. The processed text, shared URLs, page content, clipboard content, and browsing history are not collected, retained, logged, or transmitted.
 
 The extension stores one preference on the user's device: whether automatic link cleaning is enabled. This preference is a Boolean on/off value and does not contain personal information or browsing data.
 
@@ -56,11 +56,11 @@ This extension is not affiliated with or endorsed by YouTube or Google.
 
 ## 한국어
 
-YouTube 공유 링크 정리(YouTube Share Link Cleaner)는 YouTube 공유 링크의 `si` 쿼리 파라미터를 제거하고 일반 동영상 페이지에서 정리된 링크를 복사하기 위한 확장 프로그램입니다. 이 문서는 확장 프로그램의 데이터 처리 방식을 설명합니다.
+YouTube 공유 링크 정리(YouTube Share Link Cleaner)는 YouTube 공유 링크의 `si` 쿼리 파라미터를 제거하고 일반 동영상 및 Shorts 페이지에서 정리된 링크를 복사하기 위한 확장 프로그램입니다. 이 문서는 확장 프로그램의 데이터 처리 방식을 설명합니다.
 
 ### 확장 프로그램이 처리하는 데이터
 
-확장 프로그램은 YouTube의 공유 및 복사 과정에서 사용되는 텍스트가 `si` 파라미터를 포함한 YouTube URL인지 확인하기 위해 이를 일시적으로 처리합니다. 일반 YouTube 동영상 페이지에서 **정리해 복사**를 누르면 요청한 정리 링크를 만들기 위해 현재 페이지 URL만 처리합니다. 모든 처리는 사용자의 기기 안에서 이루어집니다. 처리된 텍스트, 공유 URL, 페이지 내용, 클립보드 내용 및 방문 기록은 수집, 보관, 기록 또는 전송되지 않습니다.
+확장 프로그램은 YouTube의 공유 및 복사 과정에서 사용되는 텍스트가 `si` 파라미터를 포함한 YouTube URL인지 확인하기 위해 이를 일시적으로 처리합니다. 일반 YouTube 동영상 또는 Shorts 페이지에서 복사 버튼을 누르면 요청한 정리 링크를 만들기 위해 현재 페이지 URL만 처리합니다. 모든 처리는 사용자의 기기 안에서 이루어집니다. 처리된 텍스트, 공유 URL, 페이지 내용, 클립보드 내용 및 방문 기록은 수집, 보관, 기록 또는 전송되지 않습니다.
 
 확장 프로그램은 자동 링크 정리 기능의 켜짐/꺼짐 여부만 사용자의 기기에 저장합니다. 이 설정은 참/거짓 값 하나이며 개인정보나 방문 정보를 포함하지 않습니다.
 

@@ -76,14 +76,21 @@ test("shortens a watch URL even when it has no si parameter", () => {
   );
 });
 
-test("cleans si without changing non-watch YouTube URLs", () => {
+test("cleans si from short YouTube URLs and shortens Shorts URLs", () => {
   assert.equal(
     shortenCopiedYouTubeUrl("https://youtu.be/dQw4w9WgXcQ?si=value&t=42"),
     "https://youtu.be/dQw4w9WgXcQ?t=42"
   );
   assert.equal(
     shortenCopiedYouTubeUrl("https://youtube.com/shorts/example?si=value"),
-    "https://youtube.com/shorts/example"
+    "https://youtu.be/example"
+  );
+});
+
+test("shortens a YouTube Shorts URL while preserving useful parameters", () => {
+  assert.equal(
+    shortenCopiedYouTubeUrl("https://www.youtube.com/shorts/dQw4w9WgXcQ?si=value&t=42"),
+    "https://youtu.be/dQw4w9WgXcQ?t=42"
   );
 });
 

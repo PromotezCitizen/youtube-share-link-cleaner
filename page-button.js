@@ -13,6 +13,10 @@
     return isKorean() ? "정리해 복사" : "Copy clean link";
   }
 
+  function shortsCopyLabel() {
+    return isKorean() ? "복사" : "Copy";
+  }
+
   function copiedLabel() {
     return isKorean() ? "복사됨" : "Copied";
   }
@@ -21,14 +25,24 @@
     return isKorean() ? "다시 시도" : "Try again";
   }
 
-  function isEligibleWatchPage() {
+  function getPageKind() {
     const url = new URL(window.location.href);
-    return url.pathname === "/watch" && url.searchParams.has("v");
+
+    if (url.pathname === "/watch" && url.searchParams.has("v")) {
+      return "watch";
+    }
+
+    if (/^\/shorts\/[^/]+\/?$/.test(url.pathname)) {
+      return "shorts";
+    }
+
+    return null;
   }
 
-  function createButtonHost() {
+  function createButtonHost(pageKind) {
     const host = document.createElement("span");
     host.id = hostId;
+    host.dataset.pageKind = pageKind;
 
     const shadow = host.attachShadow({ mode: "closed" });
     const style = document.createElement("style");
@@ -57,6 +71,29 @@
         button:hover { background: #3f3f3f; }
       }
       @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+      :host([data-page-kind="shorts"]) { margin: 8px 0 0; }
+      :host([data-page-kind="shorts"]) button {
+        inline-size: 52px;
+        min-block-size: auto;
+        flex-direction: column;
+        gap: 4px;
+        padding: 4px 0;
+        background: transparent;
+        color: inherit;
+        font-size: 12px;
+      }
+      :host([data-page-kind="shorts"]) button:hover { background: transparent; }
+      :host([data-page-kind="shorts"]) svg {
+        box-sizing: content-box;
+        padding: 10px;
+        border-radius: 50%;
+        background: #f2f2f2;
+      }
+      :host([data-page-kind="shorts"]) button:hover svg { background: #e5e5e5; }
+      @media (prefers-color-scheme: dark) {
+        :host([data-page-kind="shorts"]) svg { background: #272727; }
+        :host([data-page-kind="shorts"]) button:hover svg { background: #3f3f3f; }
+      }
     `;
 
     const button = document.createElement("button");
@@ -69,7 +106,7 @@
     iconPath.setAttribute("d", "M8 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2M14 4h6v6M20 4l-9 9");
     icon.append(iconPath);
     const label = document.createElement("span");
-    label.textContent = copyLabel();
+    label.textContent = pageKind === "shorts" ? shortsCopyLabel() : copyLabel();
     button.append(icon, label);
 
     button.addEventListener("click", async () => {
@@ -84,7 +121,7 @@
       } finally {
         window.setTimeout(() => {
           button.disabled = false;
-          label.textContent = copyLabel();
+          label.textContent = pageKind === "shorts" ? shortsCopyLabel() : copyLabel();
         }, 1400);
       }
     });
@@ -94,17 +131,22 @@
   }
 
   function updateButton() {
-    if (!isEligibleWatchPage()) {
+    const pageKind = getPageKind();
+
+    if (!pageKind) {
       document.getElementById(hostId)?.remove();
       return;
     }
 
-    const actionBar = document.querySelector("#top-level-buttons-computed");
+    const actionBar =
+      pageKind === "watch"
+        ? document.querySelector("#top-level-buttons-computed")
+        : document.querySelector("ytd-reel-player-overlay-renderer #actions");
     if (!actionBar || document.getElementById(hostId)) {
       return;
     }
 
-    actionBar.append(createButtonHost());
+    actionBar.append(createButtonHost(pageKind));
   }
 
   function scheduleUpdate() {

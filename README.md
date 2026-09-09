@@ -2,7 +2,7 @@
 
 English | [한국어](README.ko.md)
 
-A Chrome extension that removes `si` from YouTube share links and adds a clean-copy button to regular video pages.
+A Chrome extension that removes `si` from YouTube share links and adds a clean-copy button to video and Shorts pages.
 
 ![YouTube Share Link Cleaner icon](icons/icon-128.png)
 
@@ -11,7 +11,7 @@ A Chrome extension that removes `si` from YouTube share links and adds a clean-c
 - Removes only the `si` parameter from YouTube share links.
 - Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
 - Provides a popup toggle to enable or disable automatic cleaning instantly.
-- Adds a **Copy clean link** button to regular YouTube video pages (not Shorts).
+- Adds a **Copy clean link** button to YouTube video and Shorts pages.
 - Displays its interface in Korean or English based on Chrome's UI language.
 - Uses no external servers, user accounts, advertising, or analytics.
 
@@ -64,7 +64,7 @@ The setting is stored on the current device and applies immediately to open YouT
 
 ## Copy from a video page
 
-On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. Select it to copy the cleaned, shortened current link without opening the extension popup. The button is not added to YouTube Shorts pages.
+On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. On Shorts pages, it adds a compact copy button to the vertical action menu. Select it to copy the cleaned, shortened current link without opening the extension popup.
 
 ## Languages
 
