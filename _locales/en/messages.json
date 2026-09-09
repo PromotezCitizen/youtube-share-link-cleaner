@@ -3,7 +3,7 @@
     "message": "YouTube Share Link Cleaner"
   },
   "extensionDescription": {
-    "message": "Removes si from YouTube shares and cleans copied YouTube links."
+    "message": "Removes si from YouTube shares and lets you copy clean video links."
   },
   "actionTitle": {
     "message": "YouTube Share Link Cleaner settings"
@@ -34,32 +34,5 @@
   },
   "saveError": {
     "message": "Could not save the setting. Try again."
-  },
-  "clipboardButton": {
-    "message": "Clean copied link"
-  },
-  "copyCurrentPageButton": {
-    "message": "Copy current page link"
-  },
-  "clipboardSuccess": {
-    "message": "Copied link cleaned."
-  },
-  "clipboardEmpty": {
-    "message": "Copy a YouTube link first."
-  },
-  "clipboardUnsupported": {
-    "message": "No supported YouTube link found in the clipboard."
-  },
-  "clipboardError": {
-    "message": "Could not access the clipboard. Allow clipboard access and try again."
-  },
-  "currentPageSuccess": {
-    "message": "Current page link copied."
-  },
-  "currentPageUnsupported": {
-    "message": "Open a YouTube page to copy its link."
-  },
-  "currentPageError": {
-    "message": "Could not access the current page. Try again."
   }
 }

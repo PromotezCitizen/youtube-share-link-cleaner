@@ -29,11 +29,11 @@
   function createButtonHost() {
     const host = document.createElement("span");
     host.id = hostId;
-    host.style.display = "inline-flex";
 
     const shadow = host.attachShadow({ mode: "closed" });
     const style = document.createElement("style");
     style.textContent = `
+      :host { display: inline-flex; margin-inline-start: 12px; }
       button {
         display: inline-flex;
         min-block-size: 36px;

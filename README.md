@@ -2,7 +2,7 @@
 
 English | [한국어](README.ko.md)
 
-A Chrome extension that removes `si` from YouTube share links and can shorten a copied YouTube watch link on demand.
+A Chrome extension that removes `si` from YouTube share links and adds a clean-copy button to regular video pages.
 
 ![YouTube Share Link Cleaner icon](icons/icon-128.png)
 
@@ -11,8 +11,6 @@ A Chrome extension that removes `si` from YouTube share links and can shorten a 
 - Removes only the `si` parameter from YouTube share links.
 - Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
 - Provides a popup toggle to enable or disable automatic cleaning instantly.
-- Cleans a copied `youtube.com/watch?v=…` link on demand, converting it to `youtu.be/…`.
-- Copies a cleaned link for the currently open YouTube page directly from the popup.
 - Adds a **Copy clean link** button to regular YouTube video pages (not Shorts).
 - Displays its interface in Korean or English based on Chrome's UI language.
 - Uses no external servers, user accounts, advertising, or analytics.
@@ -64,18 +62,6 @@ The extension does not inject scripts into unrelated websites and does not modif
 
 The setting is stored on the current device and applies immediately to open YouTube tabs. Automatic cleaning is enabled by default.
 
-## Clean a link copied from the address bar
-
-1. Copy a YouTube link from Chrome's address bar.
-2. Open **YouTube Share Link Cleaner** from the extensions button.
-3. Select **Clean copied link**.
-
-For a supported `youtube.com/watch?v=VIDEO_ID` URL, the button converts it to `https://youtu.be/VIDEO_ID`, removes `si`, and preserves the remaining parameters such as `t` and `list`. It reads the clipboard only after you select the button; it does not monitor clipboard contents automatically.
-
-## Copy the current YouTube page link
-
-Open the extension while viewing a YouTube page and select **Copy current page link**. It copies the current page URL after removing `si` and shortens supported watch URLs to `youtu.be/VIDEO_ID`. On a non-YouTube tab, the extension does not copy anything.
-
 ## Copy from a video page
 
 On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. Select it to copy the cleaned, shortened current link without opening the extension popup. The button is not added to YouTube Shorts pages.
@@ -119,19 +105,16 @@ When a newer archive is available, download and extract it, then use the reload 
 - It does not transmit user data to external servers or third parties.
 - It contains no advertising, analytics, or tracking code.
 - A URL that YouTube attempts to copy is processed momentarily and only on the user's device to remove `si`.
-- A copied URL is read only after selecting **Clean copied link**, processed locally, and immediately replaced with its cleaned form. It is never retained or transmitted.
+- A regular video page URL is processed only after selecting **Copy clean link**, then copied in its cleaned form. It is never retained or transmitted.
 - `chrome.storage.local` stores only whether automatic cleaning is enabled.
 
 Chrome removes the extension's local setting when the extension is uninstalled.
 
 See the full [Privacy Policy](PRIVACY.md) for details.
 
-## Permissions
+## Permission
 
-- `storage` remembers whether automatic cleaning is enabled on the current device.
-- `clipboardRead` reads the copied text only after you select **Clean copied link**.
-- `clipboardWrite` replaces that copied text with the cleaned YouTube link.
-- `tabs` reads the active tab's URL only after you select **Copy current page link**, so it can create the requested cleaned link.
+The extension requests only the `storage` permission to remember whether automatic cleaning is enabled on the current device.
 
 ## Development and testing
 

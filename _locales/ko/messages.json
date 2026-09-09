@@ -3,7 +3,7 @@
     "message": "YouTube 공유 링크 정리"
   },
   "extensionDescription": {
-    "message": "YouTube 공유 링크의 si를 제거하고 복사한 링크를 정리합니다."
+    "message": "YouTube 공유 링크의 si를 제거하고 정리된 동영상 링크를 복사합니다."
   },
   "actionTitle": {
     "message": "YouTube 공유 링크 정리 설정"
@@ -34,32 +34,5 @@
   },
   "saveError": {
     "message": "설정을 저장하지 못했습니다. 다시 시도해 주세요."
-  },
-  "clipboardButton": {
-    "message": "복사한 링크 정리"
-  },
-  "copyCurrentPageButton": {
-    "message": "현재 페이지 링크 복사"
-  },
-  "clipboardSuccess": {
-    "message": "복사한 링크를 정리했습니다."
-  },
-  "clipboardEmpty": {
-    "message": "먼저 YouTube 링크를 복사해 주세요."
-  },
-  "clipboardUnsupported": {
-    "message": "클립보드에서 지원하는 YouTube 링크를 찾지 못했습니다."
-  },
-  "clipboardError": {
-    "message": "클립보드에 접근하지 못했습니다. 접근을 허용한 뒤 다시 시도해 주세요."
-  },
-  "currentPageSuccess": {
-    "message": "현재 페이지 링크를 복사했습니다."
-  },
-  "currentPageUnsupported": {
-    "message": "YouTube 페이지를 연 뒤 링크를 복사해 주세요."
-  },
-  "currentPageError": {
-    "message": "현재 페이지에 접근하지 못했습니다. 다시 시도해 주세요."
   }
 }
