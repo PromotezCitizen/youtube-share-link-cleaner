@@ -23,9 +23,6 @@
   "shortsToggleLabel": {
     "message": "Shorten Shorts links"
   },
-  "shortsToggleDescription": {
-    "message": "Change /shorts links to short youtu.be links when sharing."
-  },
   "loadingState": {
     "message": "Loading"
   },

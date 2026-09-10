@@ -23,9 +23,6 @@
   "shortsToggleLabel": {
     "message": "Shorts 링크 줄이기"
   },
-  "shortsToggleDescription": {
-    "message": "공유할 때 /shorts 링크를 짧은 youtu.be 링크로 바꿉니다."
-  },
   "loadingState": {
     "message": "불러오는 중"
   },
