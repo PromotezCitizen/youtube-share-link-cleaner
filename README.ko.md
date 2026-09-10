@@ -11,7 +11,7 @@ YouTube 공유 링크의 `si`를 제거하고, 원하면 Shorts 링크도 짧게
 - YouTube 공유 링크에서 `si` 파라미터만 자동으로 제거합니다.
 - 시작 시간(`t`), 재생목록(`list`)과 같은 다른 정보는 유지합니다.
 - 확장 프로그램 팝업에서 자동 정리를 즉시 켜거나 끌 수 있습니다.
-- 원하면 공유할 Shorts URL을 `/shorts/VIDEO_ID`에서 `youtu.be/VIDEO_ID`로 바꿉니다.
+- 원하면 공유할 Shorts·라이브 URL을 `youtu.be/VIDEO_ID`로 바꿉니다.
 - 일반 YouTube 동영상 페이지에 정리 링크 복사 버튼을 추가합니다.
 - Chrome UI 언어에 맞춰 한국어 또는 영어로 표시됩니다.
 - 외부 서버, 사용자 계정, 분석 도구를 사용하지 않습니다.
@@ -65,7 +65,7 @@ YouTube 페이지의 공유 창이나 복사 동작에서 만들어진 다음 �
 
 ## 동영상 페이지에서 바로 복사
 
-일반 YouTube 동영상 페이지에서는 YouTube의 동작 버튼 옆에 **정리해 복사** 버튼이 추가됩니다. 팝업에서 **Shorts 링크 줄이기**를 켜면, 공유되는 Shorts URL을 `/shorts/VIDEO_ID`에서 `youtu.be/VIDEO_ID`로 바꾸고 시작 시간 같은 유용한 파라미터는 유지합니다.
+일반 YouTube 동영상 페이지에서는 YouTube의 동작 버튼 옆에 **정리해 복사** 버튼이 추가됩니다. 팝업에서 **Shorts·라이브 링크 줄이기**를 켜면, 공유되는 `/shorts/VIDEO_ID`와 `/live/VIDEO_ID` URL을 `youtu.be/VIDEO_ID`로 바꾸고 시작 시간 같은 유용한 파라미터는 유지합니다.
 
 ## 언어
 

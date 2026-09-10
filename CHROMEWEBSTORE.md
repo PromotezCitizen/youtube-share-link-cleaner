@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — YouTube Share Link Cleaner
 
 > Last updated: 2026-09-09
-> Extension version: 1.6.0
+> Extension version: 1.6.1
 
 This file is the copy-and-paste source for the Chrome Web Store Developer Dashboard. Text marked as internal notes is not intended for the public listing.
 
@@ -221,6 +221,7 @@ Official references:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
+| 1.6.1 | 2026-09-11 | Extends the optional direct-link shortening toggle to YouTube live URLs. | Feature branch |
 | 1.6.0 | 2026-09-11 | Adds an optional Shorts-link shortening toggle for YouTube's share flow and removes the overlapping Shorts page button. | Feature branch |
 | 1.5.4 | 2026-09-09 | Supports newer Shorts action-bar layouts and adds a visible fallback when YouTube does not expose an action container. | Feature branch |
 | 1.5.3 | 2026-09-09 | Makes the Shorts copy button resilient to current action-menu layouts and YouTube SPA navigation from a regular video. | Feature branch |

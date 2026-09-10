@@ -11,7 +11,7 @@ A Chrome extension that removes `si` from YouTube share links and optionally sho
 - Removes only the `si` parameter from YouTube share links.
 - Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
 - Provides a popup toggle to enable or disable automatic cleaning instantly.
-- Optionally changes shared Shorts URLs from `/shorts/VIDEO_ID` to `youtu.be/VIDEO_ID`.
+- Optionally changes shared Shorts and live URLs to `youtu.be/VIDEO_ID`.
 - Adds a **Copy clean link** button to regular YouTube video pages.
 - Displays its interface in Korean or English based on Chrome's UI language.
 - Uses no external servers, user accounts, advertising, or analytics.
@@ -65,7 +65,7 @@ The setting is stored on the current device and applies immediately to open YouT
 
 ## Copy from a video page
 
-On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. In the popup, turn on **Shorten Shorts links** to change shared Shorts URLs from `/shorts/VIDEO_ID` to `youtu.be/VIDEO_ID` while preserving useful parameters such as timestamps.
+On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. In the popup, turn on **Shorten Shorts and live links** to change shared `/shorts/VIDEO_ID` and `/live/VIDEO_ID` URLs to `youtu.be/VIDEO_ID` while preserving useful parameters such as timestamps.
 
 ## Languages
 

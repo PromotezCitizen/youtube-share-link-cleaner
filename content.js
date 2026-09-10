@@ -1,7 +1,7 @@
 (function installYouTubeShareCleaner() {
   "use strict";
 
-  const { sanitizeYouTubeUrl, shortenShortsYouTubeUrl } = globalThis.__YOUTUBE_SHARE_SI_REMOVER__;
+  const { sanitizeYouTubeUrl, shortenDirectYouTubeUrl } = globalThis.__YOUTUBE_SHARE_SI_REMOVER__;
   const stateChannel = "youtube-share-link-cleaner";
   const textFieldSelector = "input, textarea";
   const originalFieldValues = new WeakMap();
@@ -28,7 +28,7 @@
 
   function cleanShareUrl(value) {
     const withoutSi = sanitizeYouTubeUrl(value);
-    return shouldShortenShorts ? shortenShortsYouTubeUrl(withoutSi) : withoutSi;
+    return shouldShortenShorts ? shortenDirectYouTubeUrl(withoutSi) : withoutSi;
   }
 
   function cleanField(field) {

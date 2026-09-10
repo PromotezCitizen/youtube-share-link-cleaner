@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 
 const {
   sanitizeYouTubeUrl,
-  shortenShortsYouTubeUrl,
+  shortenDirectYouTubeUrl,
   shortenCopiedYouTubeUrl
 } = require("../sanitize-url.js");
 
@@ -95,13 +95,24 @@ test("shortens a YouTube Shorts URL while preserving useful parameters", () => {
   );
 });
 
-test("shortens only Shorts URLs for the automatic Shorts option", () => {
+test("shortens a YouTube live URL while preserving useful parameters", () => {
   assert.equal(
-    shortenShortsYouTubeUrl("https://www.youtube.com/shorts/dQw4w9WgXcQ?si=value&t=42"),
+    shortenCopiedYouTubeUrl("https://www.youtube.com/live/dQw4w9WgXcQ?si=value&t=42"),
+    "https://youtu.be/dQw4w9WgXcQ?t=42"
+  );
+});
+
+test("shortens Shorts and live URLs for the automatic direct-link option", () => {
+  assert.equal(
+    shortenDirectYouTubeUrl("https://www.youtube.com/shorts/dQw4w9WgXcQ?si=value&t=42"),
     "https://youtu.be/dQw4w9WgXcQ?si=value&t=42"
   );
   assert.equal(
-    shortenShortsYouTubeUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=value"),
+    shortenDirectYouTubeUrl("https://www.youtube.com/live/dQw4w9WgXcQ?si=value&t=42"),
+    "https://youtu.be/dQw4w9WgXcQ?si=value&t=42"
+  );
+  assert.equal(
+    shortenDirectYouTubeUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=value"),
     "https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=value"
   );
 });

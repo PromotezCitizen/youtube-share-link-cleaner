@@ -42,7 +42,7 @@
     return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
   }
 
-  function shortenShortsYouTubeUrl(value) {
+  function shortenDirectYouTubeUrl(value) {
     if (typeof value !== "string") {
       return value;
     }
@@ -61,11 +61,11 @@
       return value;
     }
 
-    const shortsMatch = url.pathname.match(/^\/shorts\/([^/]+)\/?$/);
+    const directLinkMatch = url.pathname.match(/^\/(?:shorts|live)\/([^/]+)\/?$/);
     if (
       (url.protocol !== "https:" && url.protocol !== "http:") ||
       !isYouTubeHost(url.hostname) ||
-      !shortsMatch
+      !directLinkMatch
     ) {
       return value;
     }
@@ -73,7 +73,7 @@
     url.protocol = "https:";
     url.hostname = "youtu.be";
     url.port = "";
-    url.pathname = `/${shortsMatch[1]}`;
+    url.pathname = `/${directLinkMatch[1]}`;
     return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
   }
 
@@ -114,13 +114,13 @@
         url.searchParams.delete("v");
       }
     } else {
-      const shortsMatch = url.pathname.match(/^\/shorts\/([^/]+)\/?$/);
+      const directLinkMatch = url.pathname.match(/^\/(?:shorts|live)\/([^/]+)\/?$/);
 
-      if (shortsMatch) {
+      if (directLinkMatch) {
         url.protocol = "https:";
         url.hostname = "youtu.be";
         url.port = "";
-        url.pathname = `/${shortsMatch[1]}`;
+        url.pathname = `/${directLinkMatch[1]}`;
       }
     }
 
@@ -130,7 +130,7 @@
 
   const api = Object.freeze({
     sanitizeYouTubeUrl,
-    shortenShortsYouTubeUrl,
+    shortenDirectYouTubeUrl,
     shortenCopiedYouTubeUrl
   });
 
