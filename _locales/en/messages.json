@@ -15,10 +15,16 @@
     "message": "Clean share links"
   },
   "popupDescription": {
-    "message": "Removes only si. Timestamps and playlists stay intact."
+    "message": "Removes si and keeps useful link details intact."
   },
   "toggleLabel": {
     "message": "Clean automatically"
+  },
+  "shortsToggleLabel": {
+    "message": "Shorten Shorts links"
+  },
+  "shortsToggleDescription": {
+    "message": "Change /shorts links to short youtu.be links when sharing."
   },
   "loadingState": {
     "message": "Loading"

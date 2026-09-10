@@ -1,12 +1,13 @@
 (function installYouTubeShareCleaner() {
   "use strict";
 
-  const { sanitizeYouTubeUrl } = globalThis.__YOUTUBE_SHARE_SI_REMOVER__;
+  const { sanitizeYouTubeUrl, shortenShortsYouTubeUrl } = globalThis.__YOUTUBE_SHARE_SI_REMOVER__;
   const stateChannel = "youtube-share-link-cleaner";
   const textFieldSelector = "input, textarea";
   const originalFieldValues = new WeakMap();
 
   let isEnabled = false;
+  let shouldShortenShorts = false;
   let fullScanFrame = 0;
   let nodeScanFrame = 0;
   const queuedNodes = new Set();
@@ -25,12 +26,17 @@
     }
   }
 
+  function cleanShareUrl(value) {
+    const withoutSi = sanitizeYouTubeUrl(value);
+    return shouldShortenShorts ? shortenShortsYouTubeUrl(withoutSi) : withoutSi;
+  }
+
   function cleanField(field) {
     if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) {
       return;
     }
 
-    const cleanedValue = sanitizeYouTubeUrl(field.value);
+    const cleanedValue = cleanShareUrl(field.value);
     if (cleanedValue !== field.value) {
       originalFieldValues.set(field, field.value);
       setFieldValue(field, cleanedValue);
@@ -143,7 +149,7 @@
         configurable: true,
         writable: true,
         value(text) {
-          const value = isEnabled ? sanitizeYouTubeUrl(text) : text;
+          const value = isEnabled ? cleanShareUrl(text) : text;
           return originalWriteText.call(this, value);
         }
       });
@@ -162,7 +168,7 @@
       }
 
       const selectedText = getSelectedText();
-      const cleanedText = sanitizeYouTubeUrl(selectedText);
+      const cleanedText = cleanShareUrl(selectedText);
 
       if (cleanedText === selectedText) {
         return;
@@ -188,6 +194,7 @@
 
     const nextEnabledState = event.data.enabled === true;
     isEnabled = nextEnabledState;
+    shouldShortenShorts = isEnabled && event.data.shortenShorts === true;
 
     if (isEnabled) {
       requestFullScan();

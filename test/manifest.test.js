@@ -68,6 +68,8 @@ test("popup uses external assets and an accessible checkbox", () => {
   assert.match(popupHtml, /<html lang="en">/);
   assert.match(popupHtml, /<input[\s\S]*id="enabled"[\s\S]*type="checkbox"/);
   assert.match(popupHtml, /<label[\s\S]*for="enabled"/);
+  assert.match(popupHtml, /<input[\s\S]*id="shorten-shorts"[\s\S]*type="checkbox"/);
+  assert.match(popupHtml, /<label[\s\S]*for="shorten-shorts"/);
   assert.match(popupHtml, /<script src="\.\.\/sanitize-url\.js"><\/script>/);
   assert.match(popupHtml, /<script src="popup\.js"><\/script>/);
   assert.doesNotMatch(popupHtml, /\son[a-z]+\s*=/i);

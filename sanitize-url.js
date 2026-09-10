@@ -42,6 +42,41 @@
     return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
   }
 
+  function shortenShortsYouTubeUrl(value) {
+    if (typeof value !== "string") {
+      return value;
+    }
+
+    const whitespaceMatch = value.match(/^(\s*)(\S+)(\s*)$/);
+    if (!whitespaceMatch) {
+      return value;
+    }
+
+    const [, leadingWhitespace, candidate, trailingWhitespace] = whitespaceMatch;
+    let url;
+
+    try {
+      url = new URL(candidate);
+    } catch {
+      return value;
+    }
+
+    const shortsMatch = url.pathname.match(/^\/shorts\/([^/]+)\/?$/);
+    if (
+      (url.protocol !== "https:" && url.protocol !== "http:") ||
+      !isYouTubeHost(url.hostname) ||
+      !shortsMatch
+    ) {
+      return value;
+    }
+
+    url.protocol = "https:";
+    url.hostname = "youtu.be";
+    url.port = "";
+    url.pathname = `/${shortsMatch[1]}`;
+    return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
+  }
+
   function shortenCopiedYouTubeUrl(value) {
     if (typeof value !== "string") {
       return value;
@@ -93,7 +128,11 @@
     return `${leadingWhitespace}${url.toString()}${trailingWhitespace}`;
   }
 
-  const api = Object.freeze({ sanitizeYouTubeUrl, shortenCopiedYouTubeUrl });
+  const api = Object.freeze({
+    sanitizeYouTubeUrl,
+    shortenShortsYouTubeUrl,
+    shortenCopiedYouTubeUrl
+  });
 
   Object.defineProperty(root, "__YOUTUBE_SHARE_SI_REMOVER__", {
     value: api,

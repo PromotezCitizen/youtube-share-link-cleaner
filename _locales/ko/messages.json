@@ -15,10 +15,16 @@
     "message": "공유 링크 정리"
   },
   "popupDescription": {
-    "message": "si만 제거하고 시간과 재생목록은 그대로 둡니다."
+    "message": "si를 제거하고 시간·재생목록 같은 유용한 정보는 유지합니다."
   },
   "toggleLabel": {
     "message": "자동으로 정리"
+  },
+  "shortsToggleLabel": {
+    "message": "Shorts 링크 줄이기"
+  },
+  "shortsToggleDescription": {
+    "message": "공유할 때 /shorts 링크를 짧은 youtu.be 링크로 바꿉니다."
   },
   "loadingState": {
     "message": "불러오는 중"

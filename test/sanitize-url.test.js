@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 
 const {
   sanitizeYouTubeUrl,
+  shortenShortsYouTubeUrl,
   shortenCopiedYouTubeUrl
 } = require("../sanitize-url.js");
 
@@ -91,6 +92,17 @@ test("shortens a YouTube Shorts URL while preserving useful parameters", () => {
   assert.equal(
     shortenCopiedYouTubeUrl("https://www.youtube.com/shorts/dQw4w9WgXcQ?si=value&t=42"),
     "https://youtu.be/dQw4w9WgXcQ?t=42"
+  );
+});
+
+test("shortens only Shorts URLs for the automatic Shorts option", () => {
+  assert.equal(
+    shortenShortsYouTubeUrl("https://www.youtube.com/shorts/dQw4w9WgXcQ?si=value&t=42"),
+    "https://youtu.be/dQw4w9WgXcQ?si=value&t=42"
+  );
+  assert.equal(
+    shortenShortsYouTubeUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=value"),
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=value"
   );
 });
 

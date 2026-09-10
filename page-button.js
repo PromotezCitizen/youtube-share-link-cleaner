@@ -5,101 +5,30 @@
   const hostId = "youtube-share-link-cleaner-page-button";
   let updateFrame = 0;
 
-  function isKorean() {
-    return document.documentElement.lang.toLowerCase().startsWith("ko");
-  }
+  function isKorean() { return document.documentElement.lang.toLowerCase().startsWith("ko"); }
+  function copyLabel() { return isKorean() ? "정리해 복사" : "Copy clean link"; }
+  function copiedLabel() { return isKorean() ? "복사됨" : "Copied"; }
+  function failedLabel() { return isKorean() ? "다시 시도" : "Try again"; }
 
-  function copyLabel() {
-    return isKorean() ? "정리해 복사" : "Copy clean link";
-  }
-
-  function shortsCopyLabel() {
-    return isKorean() ? "복사" : "Copy";
-  }
-
-  function copiedLabel() {
-    return isKorean() ? "복사됨" : "Copied";
-  }
-
-  function failedLabel() {
-    return isKorean() ? "다시 시도" : "Try again";
-  }
-
-  function getPageKind() {
+  function isWatchPage() {
     const url = new URL(window.location.href);
-
-    if (url.pathname === "/watch" && url.searchParams.has("v")) {
-      return "watch";
-    }
-
-    if (/^\/shorts\/[^/]+\/?$/.test(url.pathname)) {
-      return "shorts";
-    }
-
-    return null;
+    return url.pathname === "/watch" && url.searchParams.has("v");
   }
 
-  function createButtonHost(pageKind, useShortsFallback = false) {
+  function createButtonHost() {
     const host = document.createElement("span");
     host.id = hostId;
-    host.dataset.pageKind = pageKind;
-    host.dataset.shortsFallback = String(useShortsFallback);
-
     const shadow = host.attachShadow({ mode: "closed" });
     const style = document.createElement("style");
     style.textContent = `
       :host { display: inline-flex; margin-inline-start: 12px; }
-      button {
-        display: inline-flex;
-        min-block-size: 36px;
-        align-items: center;
-        gap: 7px;
-        padding: 0 14px;
-        border: 0;
-        border-radius: 18px;
-        background: #f2f2f2;
-        color: #0f0f0f;
-        cursor: pointer;
-        font: 500 14px / 20px Roboto, Arial, sans-serif;
-        white-space: nowrap;
-      }
+      button { display: inline-flex; min-block-size: 36px; align-items: center; gap: 7px; padding: 0 14px; border: 0; border-radius: 18px; background: #f2f2f2; color: #0f0f0f; cursor: pointer; font: 500 14px / 20px Roboto, Arial, sans-serif; white-space: nowrap; }
       button:hover { background: #e5e5e5; }
       button:focus-visible { outline: 3px solid #065fd4; outline-offset: 2px; }
-      button:disabled { cursor: default; opacity: 0.72; }
+      button:disabled { cursor: default; opacity: .72; }
       svg { inline-size: 18px; block-size: 18px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
-      @media (prefers-color-scheme: dark) {
-        button { background: #272727; color: #f1f1f1; }
-        button:hover { background: #3f3f3f; }
-      }
+      @media (prefers-color-scheme: dark) { button { background: #272727; color: #f1f1f1; } button:hover { background: #3f3f3f; } }
       @media (prefers-reduced-motion: reduce) { button { transition: none; } }
-      :host([data-page-kind="shorts"]) { margin: 8px 0 0; }
-      :host([data-page-kind="shorts"][data-shorts-fallback="true"]) {
-        position: fixed;
-        z-index: 2202;
-        margin: 0;
-      }
-      :host([data-page-kind="shorts"]) button {
-        inline-size: 52px;
-        min-block-size: auto;
-        flex-direction: column;
-        gap: 4px;
-        padding: 4px 0;
-        background: transparent;
-        color: inherit;
-        font-size: 12px;
-      }
-      :host([data-page-kind="shorts"]) button:hover { background: transparent; }
-      :host([data-page-kind="shorts"]) svg {
-        box-sizing: content-box;
-        padding: 10px;
-        border-radius: 50%;
-        background: #f2f2f2;
-      }
-      :host([data-page-kind="shorts"]) button:hover svg { background: #e5e5e5; }
-      @media (prefers-color-scheme: dark) {
-        :host([data-page-kind="shorts"]) svg { background: #272727; }
-        :host([data-page-kind="shorts"]) button:hover svg { background: #3f3f3f; }
-      }
     `;
 
     const button = document.createElement("button");
@@ -112,12 +41,11 @@
     iconPath.setAttribute("d", "M8 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2M14 4h6v6M20 4l-9 9");
     icon.append(iconPath);
     const label = document.createElement("span");
-    label.textContent = pageKind === "shorts" ? shortsCopyLabel() : copyLabel();
+    label.textContent = copyLabel();
     button.append(icon, label);
 
     button.addEventListener("click", async () => {
       button.disabled = true;
-
       try {
         await navigator.clipboard.writeText(shortenCopiedYouTubeUrl(window.location.href));
         label.textContent = copiedLabel();
@@ -127,7 +55,7 @@
       } finally {
         window.setTimeout(() => {
           button.disabled = false;
-          label.textContent = pageKind === "shorts" ? shortsCopyLabel() : copyLabel();
+          label.textContent = copyLabel();
         }, 1400);
       }
     });
@@ -136,95 +64,26 @@
     return host;
   }
 
-  function getVisibleShortsRoot() {
-    const candidates = document.querySelectorAll(
-      "ytd-reel-video-renderer, ytd-reel-player-overlay-renderer, ytd-shorts"
-    );
-
-    return Array.from(candidates).find((candidate) => {
-      const rect = candidate.getBoundingClientRect();
-      return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < window.innerHeight;
-    });
-  }
-
-  function getShortsActionBar() {
-    const activeReel =
-      document.querySelector("ytd-reel-video-renderer[is-active]") ??
-      getVisibleShortsRoot();
-
-    return (
-      activeReel?.querySelector("#actions") ??
-      activeReel?.querySelector("#action-bar") ??
-      document.querySelector("ytd-reel-player-overlay-renderer #actions") ??
-      document.querySelector("ytd-reel-player-overlay-renderer #action-bar") ??
-      document.querySelector("ytd-reel-video-renderer #actions") ??
-      document.querySelector("ytd-shorts #actions")
-    );
-  }
-
-  function positionShortsFallback(host) {
-    const player = document.querySelector(
-      "ytd-reel-video-renderer[is-active] video, ytd-reel-video-renderer video, ytd-shorts video"
-    );
-    const rect = player?.getBoundingClientRect();
-    const left = Math.min((rect?.right ?? window.innerWidth * 0.8) + 16, window.innerWidth - 64);
-    const top = Math.min(
-      Math.max((rect?.top ?? 0) + (rect?.height ?? window.innerHeight) * 0.62, 84),
-      window.innerHeight - 96
-    );
-
-    host.style.left = `${left}px`;
-    host.style.top = `${top}px`;
-  }
-
   function updateButton() {
-    const pageKind = getPageKind();
-
-    if (!pageKind) {
+    if (!isWatchPage()) {
       document.getElementById(hostId)?.remove();
       return;
     }
 
-    const actionBar =
-      pageKind === "watch"
-        ? document.querySelector("#top-level-buttons-computed")
-        : getShortsActionBar();
-    const useShortsFallback = pageKind === "shorts" && !actionBar;
-    const buttonTarget = actionBar ?? (useShortsFallback ? document.body : null);
-
-    if (!buttonTarget) {
-      return;
-    }
+    const actionBar = document.querySelector("#top-level-buttons-computed");
+    if (!actionBar) return;
 
     const existingHost = document.getElementById(hostId);
     if (existingHost) {
-      if (
-        existingHost.dataset.pageKind === pageKind &&
-        existingHost.dataset.shortsFallback === String(useShortsFallback) &&
-        existingHost.parentElement === buttonTarget
-      ) {
-        if (useShortsFallback) {
-          positionShortsFallback(existingHost);
-        }
-        return;
-      }
-
+      if (existingHost.parentElement === actionBar) return;
       existingHost.remove();
     }
 
-    const host = createButtonHost(pageKind, useShortsFallback);
-    buttonTarget.append(host);
-
-    if (useShortsFallback) {
-      positionShortsFallback(host);
-    }
+    actionBar.append(createButtonHost());
   }
 
   function scheduleUpdate() {
-    if (updateFrame) {
-      return;
-    }
-
+    if (updateFrame) return;
     updateFrame = window.requestAnimationFrame(() => {
       updateFrame = 0;
       updateButton();
@@ -233,11 +92,6 @@
 
   document.addEventListener("yt-navigate-finish", scheduleUpdate);
   window.addEventListener("popstate", scheduleUpdate);
-
-  new MutationObserver(scheduleUpdate).observe(document.documentElement, {
-    childList: true,
-    subtree: true
-  });
-
+  new MutationObserver(scheduleUpdate).observe(document.documentElement, { childList: true, subtree: true });
   scheduleUpdate();
 })();

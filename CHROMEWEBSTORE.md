@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — YouTube Share Link Cleaner
 
 > Last updated: 2026-09-09
-> Extension version: 1.5.4
+> Extension version: 1.6.0
 
 This file is the copy-and-paste source for the Chrome Web Store Developer Dashboard. Text marked as internal notes is not intended for the public listing.
 
@@ -17,14 +17,15 @@ Removes si from YouTube shares and lets you copy clean video links.
 
 **Detailed description**
 
-Remove the `si` query parameter from YouTube share links automatically when you use YouTube's share and copy controls. Copy a cleaned link directly from YouTube video and Shorts pages.
+Remove the `si` query parameter from YouTube share links automatically when you use YouTube's share and copy controls. Optionally shorten shared Shorts links to `youtu.be` links.
 
 FEATURES
 • Removes only the `si` query parameter
 • Preserves video IDs, timestamps, playlists, and other useful parameters
 • Works with YouTube's regular Share and Copy controls
 • Includes a simple on/off toggle
-• Adds a Copy clean link button to YouTube video and Shorts pages
+• Optionally shortens shared Shorts links from `/shorts/VIDEO_ID` to `youtu.be/VIDEO_ID`
+• Adds a Copy clean link button to regular YouTube video pages
 • Supports English and Korean based on Chrome's interface language
 
 HOW TO USE
@@ -32,7 +33,8 @@ HOW TO USE
 2. Open a video on YouTube.
 3. Use YouTube's Share and Copy buttons as usual.
 4. The copied link will omit `si` while retaining other useful parameters.
-5. On a regular video page, select **Copy clean link** beside YouTube's action buttons. On a Shorts page, select the compact copy button in the vertical action menu. Either action copies the cleaned current link without opening the popup.
+5. Optionally turn on **Shorten Shorts links** to change shared Shorts URLs from `/shorts/VIDEO_ID` to `youtu.be/VIDEO_ID` while preserving useful parameters.
+6. On a regular video page, select **Copy clean link** beside YouTube's action buttons to copy its cleaned current link.
 
 PRIVACY
 Share URLs are processed momentarily on your device and are never stored or transmitted. When the user selects a copy button on a video or Shorts page, only the current page URL is processed locally and copied. The extension does not collect personal information, browsing history, or page content. It uses no analytics, advertising, tracking, accounts, external servers, or third-party services. Only the automatic-cleaning on/off preference is stored on the current device.
@@ -46,7 +48,7 @@ https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues
 
 This extension is not affiliated with or endorsed by YouTube or Google.
 
-Version 1.5.4
+Version 1.6.0
 
 **Category**
 
@@ -72,14 +74,15 @@ YouTube 공유 링크의 `si`를 제거하고 정리된 동영상 링크를 복�
 
 **상세 설명**
 
-YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` 쿼리 파라미터를 자동으로 제거합니다. 일반 동영상과 Shorts 페이지에서 정리된 링크를 바로 복사할 수도 있습니다.
+YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` 쿼리 파라미터를 자동으로 제거합니다. 원하면 공유되는 Shorts 링크도 `youtu.be` 형태로 짧게 바꿉니다.
 
 주요 기능
 • `si` 쿼리 파라미터만 제거합니다.
 • 영상 ID, 시작 시간, 재생목록 및 그 밖의 유용한 파라미터는 유지합니다.
 • YouTube의 일반적인 공유 및 복사 버튼에서 동작합니다.
 • 간단한 켜기/끄기 토글을 제공합니다.
-• 일반 YouTube 동영상과 Shorts 페이지에 정리 링크 복사 버튼을 추가합니다.
+• 원하면 공유되는 Shorts 링크를 `/shorts/VIDEO_ID`에서 `youtu.be/VIDEO_ID`로 바꿉니다.
+• 일반 YouTube 동영상 페이지에 정리 링크 복사 버튼을 추가합니다.
 • Chrome 인터페이스 언어에 따라 한국어와 영어를 지원합니다.
 
 사용 방법
@@ -87,7 +90,8 @@ YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` �
 2. YouTube에서 영상을 엽니다.
 3. 평소처럼 YouTube의 공유 및 복사 버튼을 사용합니다.
 4. 복사된 링크에서는 `si`만 빠지고 다른 유용한 파라미터는 유지됩니다.
-5. 일반 동영상 페이지에서는 YouTube 동작 버튼 옆의 **정리해 복사**를 누릅니다. Shorts 페이지에서는 오른쪽 세로 동작 메뉴의 작은 **복사** 버튼을 누릅니다. 두 경우 모두 팝업 없이 정리된 현재 링크를 복사합니다.
+5. 원하면 **Shorts 링크 줄이기**를 켜서 공유되는 Shorts URL을 `/shorts/VIDEO_ID`에서 `youtu.be/VIDEO_ID`로 바꿉니다.
+6. 일반 동영상 페이지에서는 YouTube 동작 버튼 옆의 **정리해 복사**를 눌러 정리된 현재 링크를 복사합니다.
 
 개인정보
 공유 URL은 사용자의 기기에서 순간적으로만 처리되며 저장되거나 전송되지 않습니다. 일반 동영상 또는 Shorts 페이지의 복사 버튼을 누르면 현재 페이지 URL만 기기 안에서 처리해 복사합니다. 개인정보, 방문 기록 또는 페이지 내용을 수집하지 않습니다. 분석, 광고, 추적, 사용자 계정, 외부 서버 또는 제3자 서비스를 사용하지 않습니다. 현재 기기에는 자동 정리 기능의 켜짐/꺼짐 설정만 저장합니다.
@@ -101,7 +105,7 @@ https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues
 
 이 확장 프로그램은 YouTube 또는 Google과 제휴 관계가 없으며 이들의 보증을 받지 않았습니다.
 
-버전 1.5.4
+버전 1.6.0
 
 **카테고리**
 
@@ -217,6 +221,7 @@ Official references:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
+| 1.6.0 | 2026-09-11 | Adds an optional Shorts-link shortening toggle for YouTube's share flow and removes the overlapping Shorts page button. | Feature branch |
 | 1.5.4 | 2026-09-09 | Supports newer Shorts action-bar layouts and adds a visible fallback when YouTube does not expose an action container. | Feature branch |
 | 1.5.3 | 2026-09-09 | Makes the Shorts copy button resilient to current action-menu layouts and YouTube SPA navigation from a regular video. | Feature branch |
 | 1.5.2 | 2026-09-09 | Adds a compact direct clean-copy button to Shorts pages and shortens copied Shorts URLs. | Feature branch |

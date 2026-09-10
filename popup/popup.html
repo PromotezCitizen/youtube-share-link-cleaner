@@ -19,7 +19,7 @@
           <span class="brand-name" data-i18n="extensionName">YouTube Share Link Cleaner</span>
         </div>
         <h1 data-i18n="popupTitle">Clean share links</h1>
-        <p class="intro" data-i18n="popupDescription">Removes only si. Timestamps and playlists stay intact.</p>
+        <p class="intro" data-i18n="popupDescription">Removes si and keeps useful link details intact.</p>
       </header>
 
       <section class="setting" aria-labelledby="toggle-label">
@@ -27,6 +27,17 @@
         <div class="control">
           <span id="status" class="status" aria-hidden="true" data-i18n="loadingState">Loading</span>
           <input id="enabled" class="switch" type="checkbox" disabled>
+        </div>
+      </section>
+
+      <section class="setting setting-secondary" aria-labelledby="shorts-toggle-label">
+        <div>
+          <label id="shorts-toggle-label" class="setting-title" for="shorten-shorts" data-i18n="shortsToggleLabel">Shorten Shorts links</label>
+          <p class="setting-description" data-i18n="shortsToggleDescription">Change /shorts links to short youtu.be links when sharing.</p>
+        </div>
+        <div class="control">
+          <span id="shorts-status" class="status" aria-hidden="true" data-i18n="loadingState">Loading</span>
+          <input id="shorten-shorts" class="switch" type="checkbox" disabled>
         </div>
       </section>
 

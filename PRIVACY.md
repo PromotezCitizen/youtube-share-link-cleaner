@@ -12,7 +12,7 @@ YouTube Share Link Cleaner is designed to remove the `si` query parameter from Y
 
 The extension temporarily processes text involved in YouTube's share and copy flows to determine whether it is a YouTube URL containing an `si` parameter. When a user selects **Copy clean link** on a YouTube video or Shorts page, it processes only the current page URL to create the requested cleaned link. Processing occurs entirely on the user's device. The processed text, shared URLs, page content, clipboard content, and browsing history are not collected, retained, logged, or transmitted.
 
-The extension stores one preference on the user's device: whether automatic link cleaning is enabled. This preference is a Boolean on/off value and does not contain personal information or browsing data.
+The extension stores two preferences on the user's device: whether automatic link cleaning is enabled and whether shared Shorts links should be shortened. These are Boolean on/off values and do not contain personal information or browsing data.
 
 ### How data is used
 

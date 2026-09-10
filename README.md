@@ -2,7 +2,7 @@
 
 English | [한국어](README.ko.md)
 
-A Chrome extension that removes `si` from YouTube share links and adds a clean-copy button to video and Shorts pages.
+A Chrome extension that removes `si` from YouTube share links and optionally shortens Shorts links.
 
 ![YouTube Share Link Cleaner icon](icons/icon-128.png)
 
@@ -11,7 +11,8 @@ A Chrome extension that removes `si` from YouTube share links and adds a clean-c
 - Removes only the `si` parameter from YouTube share links.
 - Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
 - Provides a popup toggle to enable or disable automatic cleaning instantly.
-- Adds a **Copy clean link** button to YouTube video and Shorts pages.
+- Optionally changes shared Shorts URLs from `/shorts/VIDEO_ID` to `youtu.be/VIDEO_ID`.
+- Adds a **Copy clean link** button to regular YouTube video pages.
 - Displays its interface in Korean or English based on Chrome's UI language.
 - Uses no external servers, user accounts, advertising, or analytics.
 
@@ -64,7 +65,7 @@ The setting is stored on the current device and applies immediately to open YouT
 
 ## Copy from a video page
 
-On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. On Shorts pages, it adds a compact copy button to the vertical action menu. Select it to copy the cleaned, shortened current link without opening the extension popup.
+On regular YouTube video pages, the extension adds a **Copy clean link** button beside YouTube's action buttons. In the popup, turn on **Shorten Shorts links** to change shared Shorts URLs from `/shorts/VIDEO_ID` to `youtu.be/VIDEO_ID` while preserving useful parameters such as timestamps.
 
 ## Languages
 
@@ -106,7 +107,7 @@ When a newer archive is available, download and extract it, then use the reload 
 - It contains no advertising, analytics, or tracking code.
 - A URL that YouTube attempts to copy is processed momentarily and only on the user's device to remove `si`.
 - A regular video page URL is processed only after selecting **Copy clean link**, then copied in its cleaned form. It is never retained or transmitted.
-- `chrome.storage.local` stores only whether automatic cleaning is enabled.
+- `chrome.storage.local` stores only the automatic-cleaning and optional Shorts-shortening preferences.
 
 Chrome removes the extension's local setting when the extension is uninstalled.
 
@@ -114,7 +115,7 @@ See the full [Privacy Policy](PRIVACY.md) for details.
 
 ## Permission
 
-The extension requests only the `storage` permission to remember whether automatic cleaning is enabled on the current device.
+The extension requests only the `storage` permission to remember the automatic-cleaning and optional Shorts-shortening preferences on the current device.
 
 ## Development and testing
 
