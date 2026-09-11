@@ -65,7 +65,7 @@ YouTube 페이지의 공유 창이나 복사 동작에서 만들어진 다음 �
 
 ## 동영상 페이지에서 바로 복사
 
-일반 YouTube 동영상 페이지에서는 YouTube의 동작 버튼 옆에 **정리해 복사** 버튼이 추가됩니다. 팝업에서 **Shorts·라이브 링크 줄이기**를 켜면, 공유되는 `/shorts/VIDEO_ID`와 `/live/VIDEO_ID` URL을 `youtu.be/VIDEO_ID`로 바꾸고 시작 시간 같은 유용한 파라미터는 유지합니다.
+일반 YouTube 동영상 페이지에서는 YouTube의 동작 버튼 옆에 **정리해 복사** 버튼이 추가됩니다. 팝업에서 **Shorts·라이브 줄이기**를 켜면, 공유되는 `/shorts/VIDEO_ID`와 `/live/VIDEO_ID` URL을 `youtu.be/VIDEO_ID`로 바꾸고 시작 시간 같은 유용한 파라미터는 유지합니다.
 
 ## 언어
 
