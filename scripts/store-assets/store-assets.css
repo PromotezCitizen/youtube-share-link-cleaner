@@ -86,6 +86,36 @@ h1 {
   text-wrap: balance;
 }
 
+.screenshot-ko h1 {
+  max-inline-size: none;
+  font-size: 3.75rem;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  word-spacing: 0.08em;
+  word-break: keep-all;
+}
+
+.screenshot-ko h1 span {
+  display: block;
+  white-space: nowrap;
+}
+
+.screenshot-ko .lead {
+  font-size: 1.125rem;
+  word-break: keep-all;
+}
+
+.screenshot-ko .url-row strong {
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.screenshot-ko .popup-preview p,
+.screenshot-ko .setting-label,
+.screenshot-ko .setting-state {
+  word-break: keep-all;
+}
+
 .lead {
   max-inline-size: 34rem;
   margin: 1.25rem 0 2rem;

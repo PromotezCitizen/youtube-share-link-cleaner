@@ -18,7 +18,7 @@
     "message": "si를 제거하고 시간·재생목록 같은 유용한 정보는 유지합니다."
   },
   "toggleLabel": {
-    "message": "자동으로 정리"
+    "message": "si 제거"
   },
   "shortsToggleLabel": {
     "message": "Shorts·라이브 줄이기"

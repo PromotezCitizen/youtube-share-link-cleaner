@@ -18,7 +18,7 @@
     "message": "Removes si and keeps useful link details intact."
   },
   "toggleLabel": {
-    "message": "Clean automatically"
+    "message": "Remove si"
   },
   "shortsToggleLabel": {
     "message": "Shorten Shorts & live"

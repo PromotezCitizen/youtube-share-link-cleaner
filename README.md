@@ -10,7 +10,7 @@ A Chrome extension that removes `si` from YouTube share links and optionally sho
 
 - Removes only the `si` parameter from YouTube share links.
 - Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
-- Provides a popup toggle to enable or disable automatic cleaning instantly.
+- Provides a popup toggle to enable or disable `si` removal instantly.
 - Optionally changes shared Shorts and live URLs to `youtu.be/VIDEO_ID`.
 - Adds a **Copy clean link** button to regular YouTube video pages.
 - Displays its interface in Korean or English based on Chrome's UI language.
@@ -59,7 +59,7 @@ The extension does not inject scripts into unrelated websites and does not modif
 
 1. Select the extensions button in the Chrome toolbar.
 2. Select **YouTube Share Link Cleaner**.
-3. Turn **Clean automatically** on or off.
+3. Turn **Remove si** on or off.
 
 The setting is stored on the current device and applies immediately to open YouTube tabs. Automatic cleaning is enabled by default.
 
@@ -107,7 +107,7 @@ When a newer archive is available, download and extract it, then use the reload 
 - It contains no advertising, analytics, or tracking code.
 - A URL that YouTube attempts to copy is processed momentarily and only on the user's device to remove `si`.
 - A regular video page URL is processed only after selecting **Copy clean link**, then copied in its cleaned form. It is never retained or transmitted.
-- `chrome.storage.local` stores only the automatic-cleaning and optional Shorts-shortening preferences.
+- `chrome.storage.local` stores only the `si` removal and optional Shorts/live shortening preferences.
 
 Chrome removes the extension's local setting when the extension is uninstalled.
 
@@ -115,7 +115,7 @@ See the full [Privacy Policy](PRIVACY.md) for details.
 
 ## Permission
 
-The extension requests only the `storage` permission to remember the automatic-cleaning and optional Shorts-shortening preferences on the current device.
+The extension requests only the `storage` permission to remember the `si` removal and optional Shorts/live shortening preferences on the current device.
 
 ## Development and testing
 
@@ -131,7 +131,8 @@ The tests cover URL-cleaning rules, manifest configuration, locale resources, re
 
 - Store listing copy, permission justifications, privacy declarations, and the submission checklist: [`CHROMEWEBSTORE.md`](CHROMEWEBSTORE.md)
 - Privacy policy: [`PRIVACY.md`](PRIVACY.md)
-- Store graphics: `store-assets/`
+- Store graphics: `store-assets/` (English and Korean overview images included)
+- Final localized screenshots: `store-assets/screenshots/en/` and `store-assets/screenshots/ko/`
 
 Regenerate the store graphics and create the clean submission ZIP with:
 

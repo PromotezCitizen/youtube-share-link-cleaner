@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — YouTube Share Link Cleaner
 
-> Last updated: 2026-09-12
-> Extension version: 1.6.5
+> Last updated: 2026-09-13
+> Extension version: 1.6.8
 
 This file is the copy-and-paste source for the Chrome Web Store Developer Dashboard. Text marked as internal notes is not intended for the public listing.
 
@@ -40,7 +40,7 @@ PRIVACY
 Share URLs are processed momentarily on your device and are never stored or transmitted. When the user selects a copy button on a video or Shorts page, only the current page URL is processed locally and copied. The extension does not collect personal information, browsing history, or page content. It uses no analytics, advertising, tracking, accounts, external servers, or third-party services. Only the automatic-cleaning on/off preference is stored on the current device.
 
 PERMISSIONS
-The storage permission remembers whether automatic cleaning is enabled on the current device. The extension runs only on YouTube pages so it can clean URLs produced by YouTube's sharing interface and provide clean-copy buttons on video and Shorts pages.
+The storage permission remembers whether `si` removal is enabled on the current device. The extension runs only on YouTube pages so it can clean URLs produced by YouTube's sharing interface and provide clean-copy buttons on video and Shorts pages.
 
 SUPPORT
 For bug reports, suggestions, and questions, visit:
@@ -94,10 +94,10 @@ YouTube의 공유 및 복사 기능을 사용할 때 공유 링크에서 `si` �
 6. 일반 동영상 페이지에서는 YouTube 동작 버튼 옆의 **정리해 복사**를 눌러 정리된 현재 링크를 복사합니다.
 
 개인정보
-공유 URL은 사용자의 기기에서 순간적으로만 처리되며 저장되거나 전송되지 않습니다. 일반 동영상 또는 Shorts 페이지의 복사 버튼을 누르면 현재 페이지 URL만 기기 안에서 처리해 복사합니다. 개인정보, 방문 기록 또는 페이지 내용을 수집하지 않습니다. 분석, 광고, 추적, 사용자 계정, 외부 서버 또는 제3자 서비스를 사용하지 않습니다. 현재 기기에는 자동 정리 기능의 켜짐/꺼짐 설정만 저장합니다.
+공유 URL은 사용자의 기기에서 순간적으로만 처리되며 저장되거나 전송되지 않습니다. 일반 동영상 또는 Shorts 페이지의 복사 버튼을 누르면 현재 페이지 URL만 기기 안에서 처리해 복사합니다. 개인정보, 방문 기록 또는 페이지 내용을 수집하지 않습니다. 분석, 광고, 추적, 사용자 계정, 외부 서버 또는 제3자 서비스를 사용하지 않습니다. 현재 기기에는 `si` 제거 기능의 켜짐/꺼짐 설정만 저장합니다.
 
 권한
-저장소 권한은 현재 기기에서 자동 정리 기능의 켜짐/꺼짐 상태를 기억하는 데 사용합니다. 확장 프로그램은 YouTube 공유 화면에서 만들어지는 URL을 정리하고 일반 동영상 및 Shorts 페이지에 복사 버튼을 제공하기 위해 YouTube 페이지에서만 실행됩니다.
+저장소 권한은 현재 기기에서 `si` 제거 기능의 켜짐/꺼짐 상태를 기억하는 데 사용합니다. 확장 프로그램은 YouTube 공유 화면에서 만들어지는 URL을 정리하고 일반 동영상 및 Shorts 페이지에 복사 버튼을 제공하기 위해 YouTube 페이지에서만 실행됩니다.
 
 지원
 오류 제보, 기능 제안 및 문의:
@@ -121,7 +121,7 @@ YouTube 공유 링크에서 `si`를 제거하고 일반 동영상 및 Shorts 페
 
 **한국어**
 
-사용자가 선택한 자동 정리 켜짐/꺼짐 상태를 현재 기기에 저장하기 위해 사용합니다. 공유 URL, 페이지 내용, 클립보드 내용 및 방문 기록은 저장하지 않습니다.
+사용자가 선택한 `si` 제거 켜짐/꺼짐 상태를 현재 기기에 저장하기 위해 사용합니다. 공유 URL, 페이지 내용, 클립보드 내용 및 방문 기록은 저장하지 않습니다.
 
 **English**
 
@@ -180,12 +180,13 @@ Open this URL in a private browser window before submission and confirm that it 
 | Asset | Dimensions | Status | Filename |
 |---|---:|---|---|
 | Store icon | 128×128 | Ready | `icons/icon-128.png` |
-| Screenshot 1 | 1280×800 | Needs update for v1.5.4 page buttons | `store-assets/screenshot-1.png` |
-| Screenshot 2 — disabled | 1280×800 | Needs update for v1.5.4 popup | `store-assets/screenshot-2-disabled-real.jpg` |
-| Screenshot 3 — enabled | 1280×800 | Needs update for v1.5.4 popup | `store-assets/screenshot-3-enabled-real.jpg` |
+| English overview | 1280×800 | Ready | `store-assets/screenshot-1.png` |
+| Korean overview | 1280×800 | Ready | `store-assets/screenshot-1-ko.png` |
+| Korean real-use screenshots | 7 × 1280×800 | Ready | `store-assets/screenshots/ko/` |
+| English real-use screenshots | 7 × 1280×800 | Ready | `store-assets/screenshots/en/` |
 | Small promotional tile | 440×280 | Ready | `store-assets/small-promo-tile.png` |
 
-Recapture at least one screenshot before uploading v1.5.4: it must show a clean-copy button on a regular video or Shorts page and a real cleaned result. Screenshots 2 and 3 can still show the automatic-cleaning disabled/enabled comparison. The captures use a browser window without a signed-in personal account. The promotional tile uses the extension's own icon and does not use YouTube or Google logos.
+The localized overview images use the same layout and feature example in English and Korean. Each localized screenshot folder contains the final manually captured copy-button, watch-page, and four Shorts toggle-state examples. The first screenshot includes the copied URL callout. Review each capture for personal browser UI before uploading. The promotional tile uses the extension's own icon and does not use YouTube or Google logos.
 
 ## Distribution
 
@@ -221,6 +222,9 @@ Official references:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
+| 1.6.8 | 2026-09-13 | Renames the automatic-cleaning toggle to the more explicit **Remove si** label in Korean and English. | Feature branch |
+| 1.6.7 | 2026-09-12 | Makes automatic `si` removal and Shorts/live URL shortening independent settings in every toggle combination. | Feature branch |
+| 1.6.6 | 2026-09-12 | Restores Shorts and live URL paths when direct-link shortening is turned off while continuing to remove `si` when automatic cleaning remains enabled. | Feature branch |
 | 1.6.5 | 2026-09-12 | Keeps the regular-video clean-copy button available when opening a video from another YouTube page. | Feature branch |
 | 1.6.4 | 2026-09-12 | Anchors the regular-video clean-copy button to the rendered Share action instead of a single YouTube action-bar ID. | Feature branch |
 | 1.6.3 | 2026-09-12 | Moves the regular-video clean-copy button to an isolated document-idle content script so it remains independent of YouTube's page-script lifecycle. | Feature branch |
@@ -248,7 +252,7 @@ Official references:
 - [x] Permission and site-access justifications prepared
 - [x] Privacy disclosures prepared
 - [x] Privacy policy written
-- [ ] Refresh required screenshots to show the v1.5.1 page button
+- [x] Refresh screenshots to show the current page button and toggle labels
 - [x] Small promotional tile prepared
 - [x] Store-only ZIP prepared
 - [ ] Push `PRIVACY.md` and verify its public URL
