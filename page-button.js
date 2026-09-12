@@ -15,14 +15,52 @@
     return url.pathname === "/watch" && url.searchParams.has("v");
   }
 
+  function isVisible(element) {
+    if (typeof element.checkVisibility === "function") {
+      return element.checkVisibility({ visibilityProperty: true });
+    }
+
+    return element.getClientRects().length > 0;
+  }
+
+  function getShareAction(root = document) {
+    const localizedShareLabel = isKorean() ? "공유" : "Share";
+
+    for (const button of root.querySelectorAll("button")) {
+      const label = button.getAttribute("aria-label")?.trim();
+      const text = button.textContent?.trim();
+
+      if ((label === localizedShareLabel || text === localizedShareLabel) && isVisible(button)) {
+        return button.closest("ytd-button-renderer") ?? button;
+      }
+    }
+
+    return null;
+  }
+
+  function getActionBar() {
+    const shareAction = getShareAction();
+    return {
+      actionBar: shareAction?.parentElement ?? null,
+      shareAction
+    };
+  }
+
+  function removeButton() {
+    document.getElementById(hostId)?.remove();
+  }
+
   function createButtonHost() {
     const host = document.createElement("span");
     host.id = hostId;
+    host.setAttribute("data-language", isKorean() ? "ko" : "en");
+    host.style.cssText = "display: inline-flex !important; margin-inline-start: 6px !important;";
     const shadow = host.attachShadow({ mode: "closed" });
     const style = document.createElement("style");
     style.textContent = `
-      :host { display: inline-flex; margin-inline-start: 12px; }
-      button { display: inline-flex; min-block-size: 36px; align-items: center; gap: 7px; padding: 0 14px; border: 0; border-radius: 18px; background: #f2f2f2; color: #0f0f0f; cursor: pointer; font: 500 14px / 20px Roboto, Arial, sans-serif; white-space: nowrap; }
+      :host { display: inline-flex; align-items: center; }
+      button { display: inline-flex; inline-size: 118px; box-sizing: border-box; min-block-size: 36px; align-items: center; justify-content: center; gap: 7px; padding: 0 14px; border: 0; border-radius: 18px; background: #f2f2f2; color: #0f0f0f; cursor: pointer; font: 500 14px / 20px Roboto, Arial, sans-serif; white-space: nowrap; }
+      :host([data-language="en"]) button { inline-size: 152px; }
       button:hover { background: #e5e5e5; }
       button:focus-visible { outline: 3px solid #065fd4; outline-offset: 2px; }
       button:disabled { cursor: default; opacity: .72; }
@@ -66,20 +104,32 @@
 
   function updateButton() {
     if (!isWatchPage()) {
-      document.getElementById(hostId)?.remove();
+      removeButton();
       return;
     }
 
-    const actionBar = document.querySelector("#top-level-buttons-computed");
+    const { actionBar, shareAction } = getActionBar();
     if (!actionBar) return;
 
     const existingHost = document.getElementById(hostId);
     if (existingHost) {
-      if (existingHost.parentElement === actionBar) return;
+      if (existingHost.parentElement === actionBar) {
+        if (shareAction?.parentElement === actionBar && shareAction.nextElementSibling !== existingHost) {
+          actionBar.insertBefore(existingHost, shareAction.nextElementSibling);
+        }
+        return;
+      }
       existingHost.remove();
     }
 
-    actionBar.append(createButtonHost());
+    const host = createButtonHost();
+
+    if (shareAction?.parentElement === actionBar) {
+      actionBar.insertBefore(host, shareAction.nextElementSibling);
+      return;
+    }
+
+    actionBar.append(host);
   }
 
   function scheduleUpdate() {
@@ -90,8 +140,19 @@
     });
   }
 
-  document.addEventListener("yt-navigate-finish", scheduleUpdate);
-  window.addEventListener("popstate", scheduleUpdate);
+  function scheduleStabilizedUpdates() {
+    scheduleUpdate();
+
+    for (const delay of [100, 500, 1000, 2000]) {
+      window.setTimeout(scheduleUpdate, delay);
+    }
+  }
+
+  document.addEventListener("yt-navigate-finish", scheduleStabilizedUpdates);
+  document.addEventListener("yt-navigate-start", removeButton);
+  document.addEventListener("yt-page-data-updated", scheduleStabilizedUpdates);
+  document.addEventListener("yt-rendererstamper-finished", scheduleStabilizedUpdates);
+  window.addEventListener("popstate", scheduleStabilizedUpdates);
   new MutationObserver(scheduleUpdate).observe(document.documentElement, { childList: true, subtree: true });
   scheduleUpdate();
 })();

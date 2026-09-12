@@ -35,16 +35,22 @@ test("all scripts and the popup referenced by the manifest exist", () => {
   }
 });
 
-test("loads the page copy button after the URL sanitizer in the main world", () => {
+test("runs URL cleaning in the main world and the page button in an isolated document-idle script", () => {
   const mainWorldScript = manifest.content_scripts.find(
     ({ world }) => world === "MAIN"
+  );
+  const pageButtonScript = manifest.content_scripts.find(
+    ({ js = [] }) => js.includes("page-button.js")
   );
 
   assert.deepEqual(mainWorldScript.js, [
     "sanitize-url.js",
-    "content.js",
-    "page-button.js"
+    "content.js"
   ]);
+  assert.equal(mainWorldScript.run_at, "document_start");
+  assert.deepEqual(pageButtonScript.js, ["sanitize-url.js", "page-button.js"]);
+  assert.equal(pageButtonScript.world, undefined);
+  assert.equal(pageButtonScript.run_at, "document_idle");
 });
 
 test("declares distinct PNG icon files at their actual dimensions", () => {

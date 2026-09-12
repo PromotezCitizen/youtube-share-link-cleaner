@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — YouTube Share Link Cleaner
 
-> Last updated: 2026-09-09
-> Extension version: 1.6.1
+> Last updated: 2026-09-12
+> Extension version: 1.6.5
 
 This file is the copy-and-paste source for the Chrome Web Store Developer Dashboard. Text marked as internal notes is not intended for the public listing.
 
@@ -221,6 +221,10 @@ Official references:
 
 | Version | Date | Changes | Status |
 |---|---|---|---|
+| 1.6.5 | 2026-09-12 | Keeps the regular-video clean-copy button available when opening a video from another YouTube page. | Feature branch |
+| 1.6.4 | 2026-09-12 | Anchors the regular-video clean-copy button to the rendered Share action instead of a single YouTube action-bar ID. | Feature branch |
+| 1.6.3 | 2026-09-12 | Moves the regular-video clean-copy button to an isolated document-idle content script so it remains independent of YouTube's page-script lifecycle. | Feature branch |
+| 1.6.2 | 2026-09-12 | Places the regular-video clean-copy button after Share, restores it after YouTube re-renders controls, and stabilizes Korean and English button widths. | Feature branch |
 | 1.6.1 | 2026-09-11 | Extends the optional direct-link shortening toggle to YouTube live URLs. | Feature branch |
 | 1.6.0 | 2026-09-11 | Adds an optional Shorts-link shortening toggle for YouTube's share flow and removes the overlapping Shorts page button. | Feature branch |
 | 1.5.4 | 2026-09-09 | Supports newer Shorts action-bar layouts and adds a visible fallback when YouTube does not expose an action container. | Feature branch |
