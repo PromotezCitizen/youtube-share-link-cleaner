@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "1.3.2",
+  "version": "1.6.8",
   "default_locale": "en",
   "minimum_chrome_version": "111",
   "permissions": ["storage"],
@@ -33,6 +33,11 @@
       "js": ["sanitize-url.js", "content.js"],
       "run_at": "document_start",
       "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["sanitize-url.js", "page-button.js"],
+      "run_at": "document_idle"
     }
   ]
 }

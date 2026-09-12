@@ -7,9 +7,13 @@ const projectRoot = path.resolve(__dirname, "..");
 const manifest = JSON.parse(
   fs.readFileSync(path.join(projectRoot, "manifest.json"), "utf8")
 );
+const packageJson = JSON.parse(
+  fs.readFileSync(path.join(projectRoot, "package.json"), "utf8")
+);
 
 test("uses Manifest V3 with only the storage permission", () => {
   assert.equal(manifest.manifest_version, 3);
+  assert.equal(manifest.version, packageJson.version);
   assert.deepEqual(manifest.permissions, ["storage"]);
   assert.equal(manifest.host_permissions, undefined);
 });
@@ -29,6 +33,24 @@ test("all scripts and the popup referenced by the manifest exist", () => {
       `${referencedFile} should exist`
     );
   }
+});
+
+test("runs URL cleaning in the main world and the page button in an isolated document-idle script", () => {
+  const mainWorldScript = manifest.content_scripts.find(
+    ({ world }) => world === "MAIN"
+  );
+  const pageButtonScript = manifest.content_scripts.find(
+    ({ js = [] }) => js.includes("page-button.js")
+  );
+
+  assert.deepEqual(mainWorldScript.js, [
+    "sanitize-url.js",
+    "content.js"
+  ]);
+  assert.equal(mainWorldScript.run_at, "document_start");
+  assert.deepEqual(pageButtonScript.js, ["sanitize-url.js", "page-button.js"]);
+  assert.equal(pageButtonScript.world, undefined);
+  assert.equal(pageButtonScript.run_at, "document_idle");
 });
 
 test("declares distinct PNG icon files at their actual dimensions", () => {
@@ -52,6 +74,10 @@ test("popup uses external assets and an accessible checkbox", () => {
   assert.match(popupHtml, /<html lang="en">/);
   assert.match(popupHtml, /<input[\s\S]*id="enabled"[\s\S]*type="checkbox"/);
   assert.match(popupHtml, /<label[\s\S]*for="enabled"/);
+  assert.match(popupHtml, /<input[\s\S]*id="shorten-shorts"[\s\S]*type="checkbox"/);
+  assert.match(popupHtml, /<label[\s\S]*for="shorten-shorts"/);
+  assert.match(popupHtml, /data-i18n="toggleLabel">Remove si<\/label>/);
+  assert.match(popupHtml, /<script src="\.\.\/sanitize-url\.js"><\/script>/);
   assert.match(popupHtml, /<script src="popup\.js"><\/script>/);
   assert.doesNotMatch(popupHtml, /\son[a-z]+\s*=/i);
 });
@@ -72,6 +98,9 @@ test("extension metadata and popup strings are localized", () => {
     )
   );
   const defaultKeys = Object.keys(localeMessages[0]).sort();
+
+  assert.equal(localeMessages[0].toggleLabel.message, "Remove si");
+  assert.equal(localeMessages[1].toggleLabel.message, "si 제거");
 
   for (const messages of localeMessages) {
     assert.deepEqual(Object.keys(messages).sort(), defaultKeys);

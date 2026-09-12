@@ -123,6 +123,10 @@ h1 {
   cursor: pointer;
 }
 
+.setting-secondary {
+  margin-block-start: 0.625rem;
+}
+
 .control {
   display: flex;
   align-items: center;

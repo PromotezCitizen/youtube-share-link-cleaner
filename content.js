@@ -1,15 +1,21 @@
 (function installYouTubeShareCleaner() {
   "use strict";
 
-  const { sanitizeYouTubeUrl } = globalThis.__YOUTUBE_SHARE_SI_REMOVER__;
+  const { sanitizeYouTubeUrl, shortenDirectYouTubeUrl } = globalThis.__YOUTUBE_SHARE_SI_REMOVER__;
   const stateChannel = "youtube-share-link-cleaner";
   const textFieldSelector = "input, textarea";
   const originalFieldValues = new WeakMap();
+  const lastWrittenFieldValues = new WeakMap();
 
   let isEnabled = false;
+  let shouldShortenShorts = false;
   let fullScanFrame = 0;
   let nodeScanFrame = 0;
   const queuedNodes = new Set();
+
+  function isTransformationEnabled() {
+    return isEnabled || shouldShortenShorts;
+  }
 
   function setFieldValue(field, value) {
     const prototype =
@@ -25,15 +31,31 @@
     }
   }
 
+  function cleanShareUrl(value) {
+    const withoutSi = isEnabled ? sanitizeYouTubeUrl(value) : value;
+    return shouldShortenShorts ? shortenDirectYouTubeUrl(withoutSi) : withoutSi;
+  }
+
   function cleanField(field) {
     if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) {
       return;
     }
 
-    const cleanedValue = sanitizeYouTubeUrl(field.value);
-    if (cleanedValue !== field.value) {
-      originalFieldValues.set(field, field.value);
+    const currentValue = field.value;
+    const lastWrittenValue = lastWrittenFieldValues.get(field);
+
+    if (lastWrittenValue !== undefined && currentValue !== lastWrittenValue) {
+      originalFieldValues.delete(field);
+      lastWrittenFieldValues.delete(field);
+    }
+
+    const cleanedValue = cleanShareUrl(currentValue);
+    if (cleanedValue !== currentValue) {
+      if (!originalFieldValues.has(field)) {
+        originalFieldValues.set(field, currentValue);
+      }
       setFieldValue(field, cleanedValue);
+      lastWrittenFieldValues.set(field, cleanedValue);
     }
   }
 
@@ -64,19 +86,20 @@
       if (originalValue !== undefined) {
         setFieldValue(field, originalValue);
         originalFieldValues.delete(field);
+        lastWrittenFieldValues.delete(field);
       }
     }
   }
 
   function requestFullScan() {
-    if (!isEnabled || fullScanFrame) {
+    if (!isTransformationEnabled() || fullScanFrame) {
       return;
     }
 
     fullScanFrame = window.requestAnimationFrame(() => {
       fullScanFrame = 0;
 
-      if (isEnabled) {
+      if (isTransformationEnabled()) {
         cleanAllFields();
       }
     });
@@ -91,7 +114,7 @@
   }
 
   function queueNodeScan(node) {
-    if (!isEnabled || !(node instanceof Element)) {
+    if (!isTransformationEnabled() || !(node instanceof Element)) {
       return;
     }
 
@@ -143,7 +166,7 @@
         configurable: true,
         writable: true,
         value(text) {
-          const value = isEnabled ? sanitizeYouTubeUrl(text) : text;
+          const value = isTransformationEnabled() ? cleanShareUrl(text) : text;
           return originalWriteText.call(this, value);
         }
       });
@@ -157,12 +180,12 @@
   document.addEventListener(
     "copy",
     (event) => {
-      if (!isEnabled || !event.clipboardData) {
+      if (!isTransformationEnabled() || !event.clipboardData) {
         return;
       }
 
       const selectedText = getSelectedText();
-      const cleanedText = sanitizeYouTubeUrl(selectedText);
+      const cleanedText = cleanShareUrl(selectedText);
 
       if (cleanedText === selectedText) {
         return;
@@ -187,9 +210,18 @@
     }
 
     const nextEnabledState = event.data.enabled === true;
-    isEnabled = nextEnabledState;
+    const nextShortenState = event.data.shortenShorts === true;
+    const stateChanged =
+      isEnabled !== nextEnabledState || shouldShortenShorts !== nextShortenState;
 
-    if (isEnabled) {
+    if (stateChanged) {
+      restoreAllFields();
+    }
+
+    isEnabled = nextEnabledState;
+    shouldShortenShorts = nextShortenState;
+
+    if (isTransformationEnabled()) {
       requestFullScan();
     } else {
       if (fullScanFrame) {
