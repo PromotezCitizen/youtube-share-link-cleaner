@@ -13,12 +13,12 @@
           <img src="../../icons/icon-128.png" alt="">
           <span>YouTube Share Link Cleaner</span>
         </div>
-        <h1 id="headline">Share the link, without <code>si</code>.</h1>
-        <p class="lead">Automatically removes only the <code>si</code> query parameter while keeping timestamps, playlists, and video IDs intact.</p>
+        <h1 id="headline">Clean every YouTube share link.</h1>
+        <p class="lead">Remove <code>si</code>, then optionally shorten Shorts and live links while keeping timestamps and video IDs intact.</p>
         <div class="transform" aria-label="Example link transformation">
           <div class="url-row before">
             <strong>Before</strong>
-            <code>youtu.be/dQw4w9WgXcQ?<span class="removed">si=abc123&amp;</span>t=42</code>
+            <code>youtube.com/shorts/dQw4w9WgXcQ?<span class="removed">si=abc123&amp;</span>t=42</code>
           </div>
           <div class="url-row after">
             <strong>After</strong>
@@ -33,9 +33,13 @@
           <span>YouTube Share Link Cleaner</span>
         </div>
         <h2>Clean share links</h2>
-        <p>Removes only <code>si</code>. Timestamps and playlists stay intact.</p>
+        <p>Remove <code>si</code> and shorten Shorts or live links.</p>
         <div class="setting">
-          <span class="setting-label">Clean automatically</span>
+          <span class="setting-label">Remove si</span>
+          <span class="setting-state">On <span class="switch" aria-hidden="true"></span></span>
+        </div>
+        <div class="setting">
+          <span class="setting-label">Shorten Shorts &amp; live</span>
           <span class="setting-state">On <span class="switch" aria-hidden="true"></span></span>
         </div>
       </aside>

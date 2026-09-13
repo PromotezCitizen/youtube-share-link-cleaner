@@ -15,6 +15,7 @@ cd "$project_dir"
 zip -q -r "$output_path" \
   manifest.json \
   content.js \
+  page-button.js \
   state-bridge.js \
   sanitize-url.js \
   popup \

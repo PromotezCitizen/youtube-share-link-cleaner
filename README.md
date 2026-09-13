@@ -2,17 +2,18 @@
 
 English | [한국어](README.ko.md)
 
-A Chrome extension that removes only the `si` query parameter added to YouTube share links.
+A Chrome extension that removes `si` from YouTube share links and optionally shortens Shorts and live links.
 
 ![YouTube Share Link Cleaner icon](icons/icon-128.png)
 
 ## Features
 
-- Removes only the `si` parameter from YouTube share links.
-- Preserves timestamps (`t`), playlists (`list`), and other useful parameters.
-- Provides a popup toggle to enable or disable automatic cleaning instantly.
-- Displays its interface in Korean or English based on Chrome's UI language.
-- Uses no external servers, user accounts, advertising, or analytics.
+- Removes only `si`. Timestamps (`t`), playlists (`list`), and other parameters stay.
+- A popup toggle turns `si` removal on or off.
+- A second toggle turns shared Shorts and live URLs into `youtu.be/VIDEO_ID`.
+- Adds a **Copy clean link** button to regular video pages.
+- Korean or English, following Chrome's UI language.
+- No servers, accounts, ads, or analytics.
 
 ## Example
 
@@ -22,7 +23,7 @@ When you copy this URL:
 https://youtu.be/dQw4w9WgXcQ?si=share-value&t=42
 ```
 
-the extension places this cleaned URL on the clipboard:
+the clipboard gets:
 
 ```text
 https://youtu.be/dQw4w9WgXcQ?t=42
@@ -51,15 +52,19 @@ Within YouTube's share dialog and copy flows, it can clean URLs for these hosts:
 - `youtube.com`
 - YouTube subdomains, including `www.youtube.com`
 
-The extension does not inject scripts into unrelated websites and does not modify URLs copied from ordinary web pages outside YouTube.
+It does not run on other sites and does not touch URLs copied elsewhere.
 
 ## Enable or disable cleaning
 
 1. Select the extensions button in the Chrome toolbar.
 2. Select **YouTube Share Link Cleaner**.
-3. Turn **Clean automatically** on or off.
+3. Turn **Remove si** on or off.
 
-The setting is stored on the current device and applies immediately to open YouTube tabs. Automatic cleaning is enabled by default.
+The setting is stored on the current device and applies immediately to open YouTube tabs. **Remove si** is on by default.
+
+## Copy from a video page
+
+Regular video pages get a **Copy clean link** button next to Share. It copies the current page URL as `youtu.be/VIDEO_ID` without `si`. In the popup, **Shorten Shorts & live** does the same for shared `/shorts/VIDEO_ID` and `/live/VIDEO_ID` URLs; timestamps and other parameters stay.
 
 ## Languages
 
@@ -77,38 +82,39 @@ The popup, extension name, and description follow Chrome's UI language.
 4. Choose the `youtube-share-link-cleaner` project directory.
 5. Refresh any YouTube tabs that were already open.
 
-Use YouTube's regular **Share** and **Copy** buttons after installation. Pin the extension to the Chrome toolbar for quick access to its setting.
+Then use YouTube's **Share** and **Copy** buttons as usual. Pin the extension to the toolbar if you change the settings often.
 
 After changing the extension code, reload it from `chrome://extensions`. If a content script changed, refresh existing YouTube tabs as well.
 
 ## Install from GitHub
 
-Chrome does not install an extension directly from a GitHub page. GitHub distribution uses Chrome's manual developer-mode installation:
+Chrome cannot install directly from GitHub, so this is a manual developer-mode install:
 
-1. On the repository page, select **Code → Download ZIP**. A versioned ZIP on the optional [Releases page](https://github.com/PromotezCitizen/youtube-share-link-cleaner/releases) can be used instead when one is available.
+1. On the repository page, select **Code**, then **Download ZIP**. A versioned ZIP from the [Releases page](https://github.com/PromotezCitizen/youtube-share-link-cleaner/releases) works too when one exists.
 2. Download the ZIP and extract it to a permanent folder. Do not select the ZIP file itself.
 3. Open `chrome://extensions` in Chrome and enable **Developer mode**.
 4. Select **Load unpacked** and choose the extracted folder containing `manifest.json`.
 5. Refresh any YouTube tabs that were already open.
 
-When a newer archive is available, download and extract it, then use the reload button on the extension card. Refresh YouTube tabs after updating. Chrome may show a developer-mode warning for extensions installed this way. The Chrome Web Store is the normal installation method for end users; GitHub installation is intended for personal use, testing, and users who accept manual updates. A GitHub Release is optional and is useful only when you want versioned downloads and release notes.
+For a newer version, download and extract again, press the reload button on the extension card, and refresh YouTube tabs. Chrome may warn about developer-mode extensions. The Chrome Web Store is the normal way to install; GitHub is for personal use, testing, and manual updates.
 
 ## Privacy and data handling
 
-- The extension does not collect personal information.
-- It does not store browsing history, shared URLs, page content, or clipboard content.
-- It does not transmit user data to external servers or third parties.
-- It contains no advertising, analytics, or tracking code.
-- A URL that YouTube attempts to copy is processed momentarily and only on the user's device to remove `si`.
-- `chrome.storage.local` stores only whether automatic cleaning is enabled.
+- No personal information is collected.
+- Browsing history, shared URLs, page content, and clipboard content are not stored.
+- Nothing is sent to servers or third parties.
+- No advertising, analytics, or tracking code.
+- The URL YouTube is about to copy is rewritten on your device and then forgotten.
+- **Copy clean link** reads the page URL only when pressed, copies the cleaned form, and keeps nothing.
+- `chrome.storage.local` holds only the two on/off settings.
 
-Chrome removes the extension's local setting when the extension is uninstalled.
+Uninstalling removes those settings.
 
 See the full [Privacy Policy](PRIVACY.md) for details.
 
 ## Permission
 
-The extension requests only the `storage` permission. It is used solely to remember whether automatic cleaning is enabled on the current device.
+Only `storage`, used to keep the two on/off settings on this device.
 
 ## Development and testing
 
@@ -118,13 +124,14 @@ Run the tests with Node.js 18 or later:
 npm test
 ```
 
-The tests cover URL-cleaning rules, manifest configuration, locale resources, referenced icon files, and their actual image dimensions.
+Tests cover the URL rules, the manifest, locale files, and icon files and sizes.
 
 ## Chrome Web Store release
 
 - Store listing copy, permission justifications, privacy declarations, and the submission checklist: [`CHROMEWEBSTORE.md`](CHROMEWEBSTORE.md)
 - Privacy policy: [`PRIVACY.md`](PRIVACY.md)
-- Store graphics: `store-assets/`
+- Store graphics: `store-assets/` (English and Korean overview images included)
+- Final localized screenshots: `store-assets/screenshots/en/` and `store-assets/screenshots/ko/`
 
 Regenerate the store graphics and create the clean submission ZIP with:
 
@@ -133,10 +140,10 @@ npm run assets:store
 npm run package:store
 ```
 
-The ZIP is written to `dist/` and contains only files required by the extension. Documentation, tests, store graphics, and development scripts are excluded.
+The ZIP lands in `dist/` with only the files the extension needs; docs, tests, graphics, and scripts are left out.
 
 ## Support
 
-Use [GitHub Issues](https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues) for bug reports, feature requests, and questions. Include the type of YouTube page and an example copied URL when possible. Remove any information you do not want to share publicly before posting.
+Bug reports, feature requests, and questions go to [GitHub Issues](https://github.com/PromotezCitizen/youtube-share-link-cleaner/issues). Say which kind of YouTube page it was and include a copied URL if you can, minus anything you would rather not post publicly.
 
 This extension is not affiliated with or endorsed by YouTube or Google.

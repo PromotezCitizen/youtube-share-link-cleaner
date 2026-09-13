@@ -3,7 +3,7 @@
     "message": "YouTube 공유 링크 정리"
   },
   "extensionDescription": {
-    "message": "YouTube 공유 링크에서 si 쿼리 파라미터만 자동으로 제거합니다."
+    "message": "YouTube 공유 링크의 si를 제거하고 정리된 동영상 링크를 복사합니다."
   },
   "actionTitle": {
     "message": "YouTube 공유 링크 정리 설정"
@@ -15,10 +15,13 @@
     "message": "공유 링크 정리"
   },
   "popupDescription": {
-    "message": "si만 제거하고 시간과 재생목록은 그대로 둡니다."
+    "message": "si를 제거하고 시간·재생목록 같은 유용한 정보는 유지합니다."
   },
   "toggleLabel": {
-    "message": "자동으로 정리"
+    "message": "si 제거"
+  },
+  "shortsToggleLabel": {
+    "message": "Shorts·라이브 줄이기"
   },
   "loadingState": {
     "message": "불러오는 중"

@@ -3,7 +3,7 @@
     "message": "YouTube Share Link Cleaner"
   },
   "extensionDescription": {
-    "message": "Automatically removes only the si query parameter from YouTube share links."
+    "message": "Removes si from YouTube shares and lets you copy clean video links."
   },
   "actionTitle": {
     "message": "YouTube Share Link Cleaner settings"
@@ -15,10 +15,13 @@
     "message": "Clean share links"
   },
   "popupDescription": {
-    "message": "Removes only si. Timestamps and playlists stay intact."
+    "message": "Removes si and keeps useful link details intact."
   },
   "toggleLabel": {
-    "message": "Clean automatically"
+    "message": "Remove si"
+  },
+  "shortsToggleLabel": {
+    "message": "Shorten Shorts & live"
   },
   "loadingState": {
     "message": "Loading"
